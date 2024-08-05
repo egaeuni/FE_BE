@@ -123,18 +123,12 @@ body {
 }
 
 .plus {
-<<<<<<< HEAD:scare_prj/static/css/document_main3.css
-  position: absolute;
-  right: 24px;
-  bottom: 85px;
-=======
   display: flex;
   margin-left: 125px;
   margin-right: 10px;
 
   width: 30px;
   height: 30px;
->>>>>>> aed0a1844ca1443b521e55bfcfbd27f96c32c6ea:scare_prj/static/css/document_main4.css
 }
 
 .bottom-navigation {
