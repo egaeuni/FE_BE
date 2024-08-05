@@ -29,11 +29,11 @@ a {
   */
 body {
   padding: 0;
-position: relative;
-width: 375px;
+  position: relative;
+  width: 375px;
   height: 812px;
-  margin: 0;
-  border: 1px solid black;}
+  border: 1px solid black;
+}
 
 nav {
   display: flex;
@@ -41,16 +41,16 @@ nav {
 }
 
 nav .title {
-  display: flex; 
-  align-items: center; 
-  padding: 33px 30px 10px 30px; 
-  position: relative; 
+  display: flex;
+  align-items: center;
+  padding: 33px 30px 10px 30px;
+  position: relative;
 }
 
 .title .back-btn {
   position: absolute;
-  left: 20px; 
-  top: 33px;  
+  left: 20px;
+  top: 33px;
   width: 30px;
   height: 30px;
   background: url(../img/back-btn30.png) center no-repeat;
@@ -74,13 +74,12 @@ nav .title {
   font-size: 18px;
 }
 
-
 .plan-title .form-control {
-  border: none; 
-  box-shadow: none; 
+  border: none;
+  box-shadow: none;
   font-size: 18px;
-  padding: 10px 0 10px 20px; 
-  width: calc(100% - 40px); 
+  padding: 10px 0 10px 20px;
+  width: calc(100% - 40px);
   outline: none;
 }
 
@@ -449,8 +448,6 @@ nav .title {
   background-color: #3498db; /* Random colors */
 }
 
-
-
 .cancel-btn button,
 .submit-btn button {
   width: 150px;
@@ -505,16 +502,16 @@ nav .title {
 
 .plan-settingbtn {
   position: fixed;
-    bottom: 10px;
-    width: 375px;
-    display: flex;
-    gap: 25px;
+  bottom: 10px;
+  width: 375px;
+  display: flex;
+  gap: 25px;
 
-    z-index: 1000;
-    bottom: 20px;
+  z-index: 1000;
+  bottom: 20px;
 
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .plan-submit-btn {
@@ -558,7 +555,6 @@ nav .title {
   transition: background-color 0.3s ease;
 }
 
-
 .checkbox-wrapper input[type="checkbox"]:checked + .checkbox-label {
   background-color: #baeeff; /* 기본 하늘색 */
 }
@@ -595,19 +591,20 @@ nav .title {
 }
 
 #am_pm_input::placeholder {
-  color: #000; 
+  color: #000;
 }
 
-.dtp div.dtp-date, .dtp div.dtp-time {
+.dtp div.dtp-date,
+.dtp div.dtp-time {
   background: #f4ebfe;
-
 }
 
 .dtp-close {
   opacity: 0;
 }
 
-.dtp-header, .dtp-btn-now  {
+.dtp-header,
+.dtp-btn-now {
   display: none;
 }
 

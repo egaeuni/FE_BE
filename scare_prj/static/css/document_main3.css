@@ -118,9 +118,9 @@ body {
 }
 
 .plus {
-  position: absolute;
-  right: 24px;
-  bottom: 85px;
+  display: flex;
+  margin-left: 140px;
+  margin-right: 10px;
 }
 
 .bottom-navigation {

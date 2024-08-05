@@ -11,7 +11,7 @@
 
 body {
   width: 295px;
-  height: 812px;
+  height: 730px;
   padding: 40px;
   border: 1px solid black;
   display: flex;
@@ -25,8 +25,8 @@ header {
 }
 
 img {
-  width: 161px;
-  height: 112px;
+  width: 171px;
+  height: 143px;
   margin-bottom: 50px;
 }
 
@@ -49,6 +49,35 @@ input {
   outline: none;
 }
 
+#loginError {
+  width: 280px;
+  height: 36px;
+  padding: 4px;
+
+  border: 1px solid #d91818;
+  border-radius: 7px;
+  background-color: rgba(217, 24, 24, 0.11);
+
+  display: none;
+  flex-direction: row;
+  align-items: center;
+}
+
+#loginError img {
+  width: 14px;
+  height: 14px;
+
+  margin: 0 4px 17px;
+}
+
+#loginError p {
+  font-size: 12px;
+  font-weight: 400;
+  color: #d91818;
+
+  margin: 2px;
+}
+
 button {
   width: 288px;
   height: 54px;
@@ -57,7 +86,6 @@ button {
 
   padding: 0;
   margin: 50px 0;
-  color: white;
   background-color: rgba(201, 153, 249, 1);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -76,55 +104,4 @@ a {
   font-size: 16px;
   font-weight: 400;
   color: black;
-}
-
-.select {
-  display: flex;
-  flex-direction: row;
-  margin-top: 20px;
-}
-
-.select input {
-  display: none;
-}
-
-.sel + label {
-  border: 1px solid black;
-  border-radius: 7px;
-  width: 140px;
-  height: 52px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 3px;
-
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-#pw2 {
-  margin-bottom: 5ㅔㅌ;
-}
-
-#pwError {
-  font-size: 12px;
-  font-weight: 300;
-  color: #d91818;
-
-  width: 290px;
-  display: none;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
-  margin-left: 5px;
-}
-
-#pwError img {
-  width: 12px;
-  height: 12px;
-  margin: 0 5px 0 0;
 }

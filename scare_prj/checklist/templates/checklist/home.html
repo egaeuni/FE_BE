@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token }}" />
     <!-- CSRF 토큰을 메타 태그로 추가 -->
-    <link rel="stylesheet" href="{% static 'css/checklist2.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/checklist3.css' %}" />
     <title>체크 리스트</title>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -92,14 +92,14 @@
                   <!-- prettier-ignore -->
                   <input 
                     type="checkbox" 
-                    id="check1" 
+                    id="check{{ todo.id }}" 
                     class="check" 
                     name="completed" 
                     data-todo-id="{{ todo.id }}"
                     {% if todo.completed %}checked{% endif %}
                     {% if user_role == 'child' %}disabled{% endif %}
                     >
-                  <label for="check1"></label>
+                  <label for="check{{ todo.id }}"></label>
                 </div>
               </a>
             </li>
