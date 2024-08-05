@@ -1,6 +1,7 @@
 @font-face {
   font-family: "NanumBarunpen";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff");
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -14,13 +15,7 @@ body {
   width: 375px;
   height: 812px;
   border: 1px solid black;
-}
-
-header {
-  display: flex;
-  justify-content: center;
-  margin-top: 33px;
-  margin-bottom: 30px;
+  position: relative;
 }
 
 .title {
@@ -31,6 +26,8 @@ header {
   justify-content: center;
   border-bottom: 1px solid black;
   flex-direction: column;
+  margin-top: 46px;
+
 }
 
 .title h3 {
@@ -56,6 +53,7 @@ header {
 
 .content {
   margin-top: 15px;
+
 }
 
 .fileInput {
@@ -75,27 +73,32 @@ header {
   width: 346px;
 }
 
+.img_div {
+  width: 330px;
+  height: 250px;
+  overflow: hidden;
+}
+
 .text_title {
   border: none;
-  width: 330px;
-  border-bottom: 1px solid #d9d9d9;
-  padding-bottom: 10px;
-  font-size: 20px;
+  width: 330px; 
+  border-bottom: 1px solid #D9D9D9;
+  padding-bottom: 6px;
+  font-size: 16px;
   font-weight: bold;
   padding-left: 16px;
-  margin: 2px 0 14px;
 }
 
 .text_content {
-  margin-top: 10px;
+  margin-top: 15px;
   border: none;
   width: 330px;
-  height: 480px;
   vertical-align: top;
   resize: none;
   overflow: hidden;
-  font-size: 14px;
+  font-size: 12px;
   padding-left: 16px;
+  height: 300px;
 }
 
 .text_content::placeholder {
@@ -110,11 +113,22 @@ header {
   display: flex;
   width: 346px;
   justify-content: space-between;
+  margin-top: 35px;
   align-items: center;
 }
 
 .btn_div {
   display: flex;
+  position: absolute;
+  right:33px;
+  bottom: 19px;
+}
+
+.img_btn {
+  display: flex;
+  position: absolute;
+  left:33px;
+  bottom: 21px;
 }
 
 .submit_btn {
@@ -130,7 +144,7 @@ header {
 }
 
 .submit_btn.active {
-  background-color: rgb(217, 217, 217, 0.3);
+  background-color: rgb(217,217,217,0.3);
 }
 
 input {

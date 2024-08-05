@@ -14,51 +14,73 @@
         <div class="title">
             <img src="{% static 'img/Logo.png' %}" alt="효담 로고" width="35" height="35">
             <div>
-                <a href="{%url 'record:home'%}" class="back">
+                <a href="{% url 'record:home' %}" class="back">
                     <img src="{% static 'img/back-btn.png' %}" width="20.16" height="18.71"></a>
                 <h3>기록 수정</h3>
             </div>
         </div>
-        <form class="input_form" action="{%url 'record:update' record.id%}" method="POST" enctype="multipart/form-data">
-            {%csrf_token%}
+        <form class="input_form" action="{% url 'record:update' record.id %}" method="POST"
+            enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="text_div">
-                <input type="text" name="title" class="text_title" value="{{record.title}}">
-                <textarea class="text_content" name="content">{{record.content}}</textarea>
+                <input type="text" name="title" class="text_title" value="{{ record.title }}">
+                <textarea class="text_content" name="content">{{ record.content }}</textarea>
+            </div>
+            <div class="img_div">
+                {% if record.image %}
+                <img id="existing-image" src="{{ record.image.url }}" width="330">
+                {% else %}
+                <img id="existing-image" style="display:none;">
+                {% endif %}
+                <img id="image-preview" src="" alt="Image Preview" style="max-width: 330px; display:none;">
             </div>
             <div class="file_submit">
-                {%if record.image%}
-                <img src="{{record.image.url}}">
-                {%endif%}
-                <input type="file" class="fileInput" name="image" value="이미지" id="fileInput">
+                <input type="file" class="fileInput" name="image" value="이미지" id="fileInput" style="display:none;">
                 <label class="fileInputLabel" id="fileInputLabel">
-                    <img src="{% static 'img/Imgload.png' %}" alt="Upload Icon" width="30" height="30">
+                    <img src="{% static 'img/Imgload.png' %}" alt="Upload Icon" width="30" height="30" class="img_btn">
                 </label>
                 <div class="btn_div">
                     <button type="submit" value="작성" class="submit_btn">완료</button>
                 </div>
             </div>
         </form>
-        <script>
-            document.getElementById('fileInputLabel').addEventListener('click', function () {
-                document.getElementById('fileInput').click();
-            });
+    </div>
 
+    <script>
+        document.getElementById('fileInputLabel').addEventListener('click', function () {
+            document.getElementById('fileInput').click();
+        });
 
-            const textInput = document.getElementById('text_title');
-            const textArea = document.getElementById('text_content');
-            const submitButton = document.getElementById('remove_content');
-
-            function checkInput() {
-                if (textInput.value.trim() !== '' && textArea.value.trim() !== '') {
-                    submitButton.classList.add('active');
-                } else {
-                    submitButton.classList.remove('active');
-                }
+        document.getElementById('fileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const existingImage = document.getElementById('existing-image');
+                    const preview = document.getElementById('image-preview');
+                    existingImage.style.display = 'none';
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
             }
+        });
 
-            textInput.addEventListener('input', checkInput);
-            textArea.addEventListener('input', checkInput);
-        </script>
+        const textInput = document.getElementById('text_title');
+        const textArea = document.getElementById('text_content');
+        const submitButton = document.getElementById('remove_content');
+
+        function checkInput() {
+            if (textInput.value.trim() !== '' && textArea.value.trim() !== '') {
+                submitButton.classList.add('active');
+            } else {
+                submitButton.classList.remove('active');
+            }
+        }
+
+        textInput.addEventListener('input', checkInput);
+        textArea.addEventListener('input', checkInput);
+    </script>
 </body>
 
 </html>
