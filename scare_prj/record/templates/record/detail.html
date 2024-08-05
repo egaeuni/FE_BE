@@ -2,47 +2,50 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>기록 디테일</title>
-    <link rel="stylesheet" href="{% static 'css/document_detail1.css' %}" />
-  </head>
 
-  <body>
-    <div class="content">
-      <div class="title">
-        <img src="{% static 'img/Logo.png' %}" alt="효담 로고" width="35" height="35" />
-        <div>
-          <a href="{%url 'record:home'%}" class="back"> <img src="{% static 'img/back-btn.png' %}" width="20.16" height="18.71" /></a>
-          <h3>기록</h3>
-        </div>
-      </div>
-      <div class="text_div">
-        <h2 class="text_title">{{record.title}}</h2>
-        <div class="text_content">
-          <p>{{record.content}}</p>
-          {%if record.image %}
-          <img src="{{record.image.url}}" />
-          {%endif%}
-          <div class="date">{{record.created_at|date:"Y.m.d"}}</div>
-          <br />
-        </div>
-        <div class="btn_div">
-          <button type="button" onclick="updateBtn()" class="update_btn">수정</button>
-          <button type="button" onclick="deleteBtn()" class="delete_btn">삭제</button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>기록 디테일</title>
+  <link rel="stylesheet" href="{% static 'css/document_detail1.css' %}" />
+</head>
+
+<body>
+  <div class="content">
+    <div class="title">
+      <img src="{% static 'img/Logo.png' %}" alt="효담 로고" width="35" height="35" />
+      <div>
+        <a href="{%url 'record:home'%}" class="back"> <img src="{% static 'img/back-btn.png' %}" width="20.16"
+            height="18.71" /></a>
+        <h3>기록</h3>
       </div>
     </div>
+    <div class="text_div">
+      <h2 class="text_title">{{record.title}}</h2>
+      <div class="text_content">
+        <p>{{record.content}}</p>
+        {%if record.image %}
+        <img src="{{record.image.url}}" width="343" />
+        {%endif%}
+        <div class="date">{{record.created_at|date:"Y.m.d"}}</div>
+        <br />
+      </div>
+      <div class="btn_div">
+        <button type="button" onclick="updateBtn()" class="update_btn">수정</button>
+        <button type="button" onclick="deleteBtn()" class="delete_btn">삭제</button>
+      </div>
+    </div>
+  </div>
 
-    <script>
-      function updateBtn() {
-        window.location.href = "{%url 'record:update' record.id%}";
-      }
+  <script>
+    function updateBtn() {
+      window.location.href = "{%url 'record:update' record.id%}";
+    }
 
-      function deleteBtn() {
-        window.location.href = "{%url 'record:delete' record.id %}";
-      }
-    </script>
-  </body>
+    function deleteBtn() {
+      window.location.href = "{%url 'record:delete' record.id %}";
+    }
+  </script>
+</body>
+
 </html>
