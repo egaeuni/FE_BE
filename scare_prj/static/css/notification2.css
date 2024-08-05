@@ -8,6 +8,7 @@
 * {
   font-family: "NanumBarunpen";
   -webkit-touch-callout: none;
+  overflow: auto;
 }
 
 body {
@@ -75,5 +76,4 @@ body {
 
 .content {
   margin-left: 19px;
-  overflow-y: scroll;
 }
