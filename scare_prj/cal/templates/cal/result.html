@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static "css/result2.css" %}">
+    <link rel="stylesheet" href="{% static "css/result3.css" %}">
     <title>Document</title>
   </head>
   <body>
@@ -37,7 +37,10 @@
       <div class="search_content">{{ entered_text }}</div>
     </header>
 
-    <div class="no_content">검색 결과가 없습니다.</div>
+    <div class="resultLine">
+      <div class="no_content">검색 결과가 없습니다.</div>
+    </div>
+
     {% endif %}
   </body>
 </html>
