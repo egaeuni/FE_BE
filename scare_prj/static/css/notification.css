@@ -1,7 +1,7 @@
 @font-face {
     font-family: "NanumBarunpen";
     src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff")
-      format("woff");
+    format("woff");
     font-weight: normal;
     font-style: normal;
   }
@@ -15,7 +15,15 @@ body {
     width: 375px;
     height: 812px;
     border: 1px solid black;
-    overflow: hidden;
+}
+
+.content {
+    overflow-y: scroll;
+    height: 800px;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
 }
 
 .title {
