@@ -5,14 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document_main</title>
-    <link rel="stylesheet" href="{% static 'css/document_main3.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/document_main4.css' %}" />
   </head>
 
   <body>
     <div class="content">
       <div class="title">
-        <img src="{% static 'img/Logo.png' %}" alt="효담 로고" width="35" height="35" />
-        <a href="{%url 'record:create' %}"><img src="{% static 'img/+.png' %}" class="plus" height="30" /></a>
+        <img src="{% static './img/logo_pur.png' %}" alt="효담 로고" width="35" height="35" />
+        <a href="{%url 'record:create' %}"><img src="{% static 'img/+.png' %}" class="plus" /></a>
       </div>
       <div class="post_wrap">
         {% for record in records %}
