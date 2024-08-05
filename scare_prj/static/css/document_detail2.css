@@ -1,7 +1,6 @@
 @font-face {
   font-family: "NanumBarunpen";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff")
-    format("woff");
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -54,7 +53,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;;
+  position: relative;
 }
 
 .fileInput {
@@ -76,8 +75,8 @@ body {
 
 .text_title {
   border: none;
-  width: 330px; 
-  border-bottom: 1px solid #D9D9D9;
+  width: 330px;
+  border-bottom: 1px solid #d9d9d9;
   padding-left: 16px;
   padding-bottom: 6px;
   font-size: 20px;
@@ -119,7 +118,7 @@ body {
 .btn_div {
   display: flex;
   position: absolute;
-  right:33px;
+  right: 33px;
   bottom: 0px;
 }
 
@@ -137,7 +136,9 @@ button {
 }
 
 .date {
-  margin-top: 50px;
-  font-size: 10px;
+  display: flex;
+  justify-content: end;
   color: #999999;
+  margin-top: 10px;
+  margin-right: 10px;
 }
