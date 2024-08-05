@@ -76,4 +76,5 @@ body {
 
 .content {
   margin-left: 19px;
+  overflow-y: scroll;
 }
