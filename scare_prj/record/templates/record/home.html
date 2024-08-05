@@ -1,6 +1,35 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ko">
+<<<<<<< HEAD
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document_main</title>
+    <link rel="stylesheet" href="{% static 'css/document_main4.css' %}" />
+  </head>
+
+  <body>
+    <div class="content">
+      <div class="title">
+        <img src="{% static './img/logo_pur.png' %}" alt="효담 로고" width="35" height="35" />
+        <a href="{%url 'record:create' %}"><img src="{% static 'img/+.png' %}" class="plus" /></a>
+      </div>
+      <div class="post_wrap">
+        {% for record in records %}
+        <div class="post">
+          <h3 class="post_title"><a href="{%url 'record:detail' record.id %}">{{ record.title }}</a></h3>
+          <p class="post_content">{{record.content}}</p>
+          {%if record.image %}
+          <div class="img_div">
+            <img src="{{record.image.url}}" width="130" />
+          </div>
+          {%endif%}
+          <p class="date">{{record.created_at|date:"Y.m.d"}}</p>
+        </div>
+        {% empty %} 작성된 기록이 없습니다.{% endfor %}
+      </div>
+=======
 
 <head>
   <meta charset="UTF-8" />
@@ -13,6 +42,7 @@
   <div class="content">
     <div class="title">
       <img src="{% static 'img/Logo.png' %}" alt="효담 로고" width="35" height="35">
+>>>>>>> 784ae86ec12b0597b46b6ff4edaa9314ef2d8ddf
     </div>
     <div class="post_wrap">
       {% for record in records %}
