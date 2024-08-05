@@ -1,62 +1,78 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>기록 작성</title>
-    <link rel="stylesheet" href="{% static 'css/document_create1.css' %}" />
-  </head>
 
-  <body>
-    <div class="content">
-      <div class="title">
-        <img src="{% static 'img/Logo.png' %}" alt="효담 로고" width="35" height="35" />
-        <div>
-          <a href="{%url 'record:home'%}" class="back"> <img src="{% static 'img/back-btn.png' %}" width="20.16" height="18.71" /></a>
-          <h3>기록 생성</h3>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>기록 작성</title>
+  <link rel="stylesheet" href="{% static 'css/document_create1.css' %}">
+</head>
+
+<body>
+  <div class="content">
+    <div class="title">
+      <img src="{% static 'img/Logo.png' %}" alt="효담 로고" width="35" height="35">
+      <div>
+        <a href="{%url 'record:home'%}" class="back">
+          <img src="{% static 'img/back-btn.png' %}" width="20.16" height="18.71"></a>
+        <h3>기록 생성</h3>
+      </div>
+    </div>
+    <form class="input_form" action="{%url 'record:create'%}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="text_div">
+        <input type="text" name="title" class="text_title" placeholder="제목을 입력해 주세요." id="text_title">
+        <textarea class="text_content" name="content" placeholder="내용을 작성해 주세요." id="text_content"></textarea>
+      </div>
+      <div class="img_div">
+        <img id="image-preview" src="" alt="Image Preview" style="max-width: 300px; max-height: 300px; display: none;">
+      </div>
+      <div class="file_submit">
+        <input type="file" class="fileInput" name="image" id="fileInput" accept="image/*" style="display: none;">
+        <label for="fileInput" class="fileInputLabel" id="fileInputLabel">
+          <img src="{% static 'img/Imgload.png' %}" alt="Upload Icon" width="30" height="30" class="img_btn">
+        </label>
+        <div class="btn_div">
+          <button type="reset" class="remove_content" id="remove_content">삭제</button>
+          <button type="submit" value="작성" class="submit_btn">완료</button>
         </div>
       </div>
-      <form class="input_form" action="{%url 'record:create'%}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="text_div">
-          <input type="text" name="title" class="text_title" placeholder="제목을 입력해 주세요." id="text_title" />
-          <textarea class="text_content" name="content" placeholder="내용을 작성해 주세요." id="text_content"></textarea>
-        </div>
-        <div class="file_submit">
-          {%if record.image%}
-          <img src="{{record.image.url}}" />
-          {%endif%}
-          <input type="file" class="fileInput" name="image" value="이미지" id="fileInput" />
-          <label class="fileInputLabel" id="fileInputLabel">
-            <img src="{% static 'img/Imgload.png' %}" alt="Upload Icon" width="30" height="30" />
-          </label>
-          <div class="btn_div">
-            <button type="reset" class="remove_content" id="remove_content">삭제</button>
-            <button type="submit" value="작성" class="submit_btn">완료</button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <script>
-      document.getElementById("fileInputLabel").addEventListener("click", function () {
-        document.getElementById("fileInput").click();
-      });
+    </form>
+  </div>
+  <script>
+    document.getElementById('fileInputLabel').addEventListener('click', function () {
+      document.getElementById('fileInput').click();
+    });
 
-      const textInput = document.getElementById("text_title");
-      const textArea = document.getElementById("text_content");
-      const submitButton = document.getElementById("remove_content");
-
-      function checkInput() {
-        if (textInput.value.trim() !== "" && textArea.value.trim() !== "") {
-          submitButton.classList.add("active");
-        } else {
-          submitButton.classList.remove("active");
-        }
+    document.getElementById('fileInput').addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const preview = document.getElementById('image-preview');
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
       }
+    });
 
-      textInput.addEventListener("input", checkInput);
-      textArea.addEventListener("input", checkInput);
-    </script>
-  </body>
+    const textInput = document.getElementById('text_title');
+    const textArea = document.getElementById('text_content');
+    const submitButton = document.getElementById('remove_content');
+
+    function checkInput() {
+      if (textInput.value.trim() !== '' && textArea.value.trim() !== '') {
+        submitButton.classList.add('active');
+      } else {
+        submitButton.classList.remove('active');
+      }
+    }
+
+    textInput.addEventListener('input', checkInput);
+    textArea.addEventListener('input', checkInput);
+  </script>
+</body>
+
 </html>
