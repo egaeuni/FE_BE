@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static "css/search1.css" %}">
+    <link rel="stylesheet" href="{% static "css/search3.css" %}">
     <title>Document</title>
 </head>
 <body>
     <section>
         <header>
-        <a href="{% url 'cal:home' %}"><img src="{% static "img/back.png"%}"></a>
-    </header>
+            <a href="{% url 'cal:home' %}"><img src="{% static "img/back.png"%}"></a>
+        </header>
 
     <form action="{% url 'cal:result' %}"  class="searchLine">
         <input name="data" size="25" placeholder="관련 단어 검색"></input>
@@ -20,7 +20,8 @@
             <label for="search"><img src="{% static "img/search.png"%}"></label>
         </div>
     </form>
-</body>
+
     </section>
     <div class="resultLine"></div>
+</body>
 </html>
