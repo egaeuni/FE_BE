@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{% static 'img/logo_pur.png' %}" />
     <title>효담 - 기록</title>
-    <link rel="stylesheet" href="{% static 'css/document_main7.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/document_main8.css' %}" />
   </head>
 
   <head>
@@ -25,17 +25,19 @@
       </div>
       <div class="post_wrap">
         {% for record in records %}
-        <div class="post">
-          <h3 class="post_title"><a href="{%url 'record:detail' record.id %}">{{ record.title }}</a></h3>
-          <p class="post_content">{{record.content}}</p>
-          {%if record.image %}
-          <div class="img_div">
-            <img src="{{record.image.url}}" width="130" />
+        <a href="{%url 'record:detail' record.id %}">
+          <div class="post">
+            <h3 class="post_title">{{ record.title }}</h3>
+            <p class="post_content">{{record.content}}</p>
+            {%if record.image %}
+            <div class="img_div">
+              <img src="{{record.image.url}}" width="130" />
+            </div>
+            {%endif%}
+            <p class="date">{{record.created_at|date:"Y.m.d"}}</p>
           </div>
-          {%endif%}
-          <p class="date">{{record.created_at|date:"Y.m.d"}}</p>
-        </div>
-        {% empty %} 작성된 기록이 없습니다.{% endfor %}
+          {% empty %} 작성된 기록이 없습니다.{% endfor %}
+        </a>
       </div>
     </div>
     <!-- nav bar -->
