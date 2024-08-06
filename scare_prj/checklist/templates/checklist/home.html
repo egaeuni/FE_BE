@@ -7,7 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token }}" />
     <!-- CSRF 토큰을 메타 태그로 추가 -->
     <link rel="stylesheet" href="{% static 'css/checklist4.css' %}" />
-    <title>체크 리스트</title>
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" >
+    <title>효담 - 체크리스트</title>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
