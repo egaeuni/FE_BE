@@ -12,26 +12,33 @@
 
 body {
   width: 375px;
-  height: 812px;
+  height: 779px;
   border: 1px solid black;
   position: relative;
+  padding-top: 33px;
 }
 
 .title {
   width: 100%;
-  height: 93px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid black;
   flex-direction: column;
-  margin-top: 46px;
+}
+.title > img {
+  margin-bottom: 10px;
 }
 
-.title h3 {
-  margin: 0;
-  margin-top: 12px;
-  margin-bottom: 12px;
+.h {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.h h3 {
   font-size: 18px;
   font-weight: bold;
 }
@@ -47,6 +54,7 @@ body {
 .back {
   position: absolute;
   left: 22.22px;
+  top: 3px;
 }
 
 .content {
@@ -74,6 +82,7 @@ body {
   width: 330px;
   height: 250px;
   overflow: hidden;
+  margin: 10px;
 }
 
 .text_title {
@@ -81,9 +90,13 @@ body {
   width: 330px;
   border-bottom: 1px solid #d9d9d9;
   padding-bottom: 6px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   padding-left: 16px;
+}
+
+.rec_content {
+  height: 300px;
 }
 
 .text_content {
@@ -93,9 +106,8 @@ body {
   vertical-align: top;
   resize: none;
   overflow: hidden;
-  font-size: 14px;
+  font-size: 20px;
   padding-left: 16px;
-  height: 300px;
 }
 
 .text_content::placeholder {

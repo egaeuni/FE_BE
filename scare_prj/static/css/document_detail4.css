@@ -13,25 +13,32 @@
 body {
   border: 1px solid black;
   width: 375px;
-  height: 812px;
+  height: 779px;
+  padding-top: 33px;
   position: relative;
 }
 
 .title {
   width: 100%;
-  height: 93px;
   display: flex;
-  margin-top: 46px;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid black;
   flex-direction: column;
 }
 
-.title h3 {
-  margin: 0;
-  margin-top: 12px;
-  margin-bottom: 12px;
+.title > img {
+  margin-bottom: 10px;
+}
+
+.h {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.h h3 {
   font-size: 18px;
   font-weight: bold;
 }
@@ -47,6 +54,7 @@ body {
 .back {
   position: absolute;
   left: 22.22px;
+  top: 3px;
 }
 
 .content {
@@ -79,12 +87,13 @@ body {
   border-bottom: 1px solid #d9d9d9;
   padding-left: 16px;
   padding-bottom: 6px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 15px;
 }
 
 .text_content {
-  font-size: 14px;
   margin-top: 15px;
   border: none;
   width: 346px;
@@ -92,13 +101,13 @@ body {
   vertical-align: top;
   resize: none;
   overflow: hidden;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .text_content p {
   margin: 0;
   padding-left: 16px;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .text_content::placeholder {
@@ -142,8 +151,9 @@ button {
   color: #999999;
   margin-top: 10px;
   margin-right: 10px;
+  font-size: 14px;
 }
 
 .content_img {
-  margin: 10px;
+  margin: 30px 10px;
 }

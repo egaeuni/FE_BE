@@ -13,25 +13,29 @@
     <div class="content">
       <div class="title">
         <img src="{% static 'img/Logo.png' %}" alt="효담 로고" width="35" height="35" />
-        <div>
-          <a href="{% url 'record:home' %}" class="back"> <img src="{% static 'img/back-btn.png' %}" width="20.16" height="18.71" /></a>
+        <div class="h">
+          <a href="{%url 'record:home'%}" class="back"> <img src="{% static 'img/back-btn.png' %}" width="23" height="23" /></a>
           <h3>기록 수정</h3>
         </div>
       </div>
+    </div>
       <form class="input_form" action="{% url 'record:update' record.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="text_div">
           <input type="text" name="title" class="text_title" value="{{ record.title }}" />
-          <textarea class="text_content" name="content">{{ record.content }}</textarea>
+          <div class="rec_content">
+            <textarea class="text_content" name="content">{{ record.content }}</textarea>
+            <div class="img_div">
+              {% if record.image %}
+              <img id="existing-image" src="{{ record.image.url }}" style="max-width: 300px; max-height: 300px" />
+              {% else %}
+              <img id="existing-image" style="display: none" />
+              {% endif %}
+              <img id="image-preview" src="" alt="Image Preview" style="max-width: 300px; max-height: 300px; display: none" />
+            </div>
+          </div>
         </div>
-        <div class="img_div">
-          {% if record.image %}
-          <img id="existing-image" src="{{ record.image.url }}" style="max-width: 300px; max-height: 300px" />
-          {% else %}
-          <img id="existing-image" style="display: none" />
-          {% endif %}
-          <img id="image-preview" src="" alt="Image Preview" style="max-width: 300px; max-height: 300px; display: none" />
-        </div>
+
         <div class="file_submit">
           <input type="file" class="fileInput" name="image" value="이미지" id="fileInput" style="display: none" />
           <label class="fileInputLabel" id="fileInputLabel">
