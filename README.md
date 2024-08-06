@@ -64,7 +64,7 @@
     $ pip install pillow
     $ python manage.py makemigrations
     $ python manage.py migrate
-    $ cd safeD
+    $ cd Scare_Prj
     $ python manage.py runserver
   ```
   <hr/>
