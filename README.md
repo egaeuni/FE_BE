@@ -57,14 +57,13 @@
 
   - **개발환경에서의 실행 방법**
   ```
-    $ cd 2024-likelion-safeD
+    $ cd FE_BE/scare_prj
     $ python -m venv myvenv
     $ source myvenv/Scripts/activate
     $ pip install django
     $ pip install pillow
     $ python manage.py makemigrations
     $ python manage.py migrate
-    $ cd Scare_Prj
     $ python manage.py runserver
   ```
   <hr/>
