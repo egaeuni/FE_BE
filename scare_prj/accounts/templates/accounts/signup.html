@@ -4,7 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{%static "css/signup1.css"%}" />
+    <link rel="stylesheet" href="{%static "css/signup2.css"%}" />
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" >
     <title>효담 - 회원가입</title>
   </head>
   <body>
@@ -17,11 +18,14 @@
         <input type="id" name="username" id="id_username" placeholder="아이디" />
         <input type="password" name="password1" id="id_password1" placeholder="비밀번호" />
         <input type="password" name="password2" id="id_password2" placeholder="비밀번호 확인" />
+        
         <div id="pwError">
           <img src="{% static "img/error.png"%}">
           <div>비밀번호가 일치하지 않습니다.</div>
-      </div>
-
+        </div>
+        <div class="pwinfo">
+          <div class="pwtext">비밀번호는 8자 이상에 숫자/기호를 포함해야합니다.</div>
+        </div>
         <div class="select">
           <input type="radio" name="role" value="child" id="id_role_0" class="sel" checked />
           <label for="id_role_0">자녀</label>

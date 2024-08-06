@@ -4,8 +4,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static "css/mypage5.css" %}">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/mypage7.css" %}">
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" >
+    <title>효담 - 마이페이지</title>
   </head>
   <body>
     <header><img src="{% static './img/logo_pur.png' %}"></header>
@@ -28,33 +29,36 @@
     <div class="ad"><img src={% static "img/ad.png"%} id="ad" /></div>
 
 <!-- nav bar -->
-<div class="bottom-navigation">
-  <a class="nav-menu" href="{% url 'cal:home' %}">
-    <div class="menu">
+<div class="nav_po">
+  <div class="bottom-navigation">
+    <a class="nav-menu" href="{% url 'cal:home' %}">
+      <div class="menu">
 
-      <img class="icon" src="{% static 'img/nav-01home_gray.png' %}" />
-      <span>홈</span>
-    </div>
-  </a>
-  <a class="nav-menu" href="{% url 'checklist:home' %}">
-    <div class="menu">
-      <img class="icon" src="{% static 'img/nav-02checklist.png' %}" />
-      <span>체크리스트</span>
-    </div>
-  </a>
-  <a class="nav-menu" href="{% url 'record:home' %}">
-    <div class="menu">
-      <img class="icon" src="{% static 'img/nav-03memo.png' %}" />
-      <span>기록</span>
-    </div>
-  </a>
-  <a class="nav-menu" href="{% url 'accounts:mypage' %}">
-    <div class="menu">
-      <img class="icon" src="{% static 'img/nav-04mypage_pur.png' %}" />
-      <span>마이페이지</span>
-    </div>
-  </a>
+        <img class="icon" src="{% static 'img/nav-01home_gray.png' %}" />
+        <span>홈</span>
+      </div>
+    </a>
+    <a class="nav-menu" href="{% url 'checklist:home' %}">
+      <div class="menu">
+        <img class="icon" src="{% static 'img/nav-02checklist.png' %}" />
+        <span>체크리스트</span>
+      </div>
+    </a>
+    <a class="nav-menu" href="{% url 'record:home' %}">
+      <div class="menu">
+        <img class="icon" src="{% static 'img/nav-03memo.png' %}" />
+        <span>기록</span>
+      </div>
+    </a>
+    <a class="nav-menu" href="{% url 'accounts:mypage' %}">
+      <div class="menu">
+        <img class="icon" src="{% static 'img/nav-04mypage_pur.png' %}" />
+        <span>마이페이지</span>
+      </div>
+    </a>
+  </div>
 </div>
+
     <script src="{% static "js/myinfo_update1.js"%}"></script>
   </body>
 </html>

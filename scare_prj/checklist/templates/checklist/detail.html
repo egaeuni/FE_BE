@@ -1,26 +1,46 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="{%url 'checklist:home'%}">뒤로 가기</a><br><br>
-    <h3>{{todo.title}}</h3>
-    {{todo.due_date|date:"Y년 m월 d일 l"}} - {{todo.due_time}}<br><br>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" />
+    <title>효담 - 체크리스트 세부</title>
+    <link rel="stylesheet" href="{% static 'css/checklist_detail1.css' %}" />
+  </head>
 
-        {% if todo.repeat_on.all %}
-        매주
-        {% for day in todo.repeat_on.all %}
-            {{ day.get_day_code_display }}
-        {% endfor %}
-    {% else %}
-        <p>반복 없음</p>
-    {% endif %}
+  <body>
+    <div class="content">
+      <div class="title">
+        <a href=" {% url 'checklist:home' %}"><img src="{% static 'img/back-btn.png' %}" alt="뒤로가기" width="20.16" height="18.71" /></a>
+        <h3>체크리스트 정보</h3>
+      </div>
+      <div class="text_content">
+        <h4 id="id_title">{{todo.title}}</h4>
+        <p>{{todo.due_date|date:"Y년 m월 d일 l"}}</p>
+        <p>{{todo.due_time}}</p>
 
-    <br><br>
-    <a href="{%url 'checklist:update' todo.id %}">수정</a>
-    <a href="{%url 'checklist:delete' todo.id %}">삭제</a>
-</body>
+        <div class="repeat">
+          {% if todo.repeat_on.all %} 매주 {% for day in todo.repeat_on.all %}
+          <p>{{ day.get_day_code_display }}</p>
+          {% endfor %} {% else %}
+          <p>반복 없음</p>
+          {% endif %}
+        </div>
+        <div class="btn_div">
+          <button type="button" onclick="updateBtn()">수정</button>
+          <button type="button" onclick="deleteBtn()">삭제</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function updateBtn() {
+        window.location.href = "{%url 'checklist:update' todo.id %}";
+      }
+
+      function deleteBtn() {
+        window.location.href = "{%url 'checklist:delete' todo.id %}";
+      }
+    </script>
+  </body>
 </html>

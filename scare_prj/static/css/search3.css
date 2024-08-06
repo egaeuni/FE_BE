@@ -16,15 +16,14 @@ button + label:hover {
 body {
   width: 375px;
   height: 779px;
-  padding: 40px 0 0;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
+  padding-top: 33px;
 }
 
 section header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-left: 10px;
 }
@@ -40,9 +39,6 @@ section {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-
-  margin-top: 20px;
 }
 
 input {
@@ -53,6 +49,7 @@ input {
   outline: none;
   display: flex;
   align-items: center;
+  margin-left: 20px;
 }
 
 #search {
@@ -74,17 +71,18 @@ img {
 }
 
 .searchLine {
-  width: 280px;
+  width: 320px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   padding-right: 15px;
+  margin-bottom: 5px;
 }
 
 .resultLine {
   width: 100%;
-  height: 700px;
+  height: 720px;
   background-color: #f0f0f0;
 }

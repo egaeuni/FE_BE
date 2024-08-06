@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static './css/home_detail1.css' %}" />
-    <title>Document</title>
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" >
+    <title>효담 - 홈 세부화면</title>
   </head>
   <body>
     <nav>
@@ -54,9 +55,43 @@
 
                 <!-- 일정 부분 -->
                 <div class="schedule-container">
-                  {% with day_schedules=month_schedules|dictsort:"date" %} {% for i in day_schedules %} {% if i.date.day == day %}
-                  <div class="schedule-item {{ i.related_words|lower }}">●</div>
-                  {% endif %} {% endfor %} {% endwith %}
+                  {% if cls == 'current-month' %}
+                    {% for schedule in month_schedules %}
+                      {% if schedule.date.year == year and schedule.date.month == month and schedule.date.day == day %}
+                        <div class="schedule-item {{ schedule.related_words|lower }}">
+                          <span class="schedule-dot {{ schedule.related_words }}">●</span>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  {% elif cls == 'prev-month' %}
+                    {% if month == 1 %}
+                      {% if schedule.date.year == year|add:-1 and schedule.date.month == 12 and schedule.date.day == day %}
+                        <div class="schedule-item {{ schedule.related_words|lower }}">
+                          <span class="schedule-dot {{ schedule.related_words }}">●</span>
+                        </div>
+                      {% endif %}
+                    {% else %}
+                      {% if schedule.date.year == year and schedule.date.month == month|add:-1 and schedule.date.day == day %}
+                        <div class="schedule-item {{ schedule.related_words|lower }}">
+                          <span class="schedule-dot {{ schedule.related_words }}">●</span>
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  {% elif cls == 'next-month' %}
+                    {% if month == 12 %}
+                      {% if schedule.date.year == year|add:1 and schedule.date.month == 1 and schedule.date.day == day %}
+                        <div class="schedule-item {{ schedule.related_words|lower }}">
+                          <span class="schedule-dot {{ schedule.related_words }}">●</span>
+                        </div>
+                      {% endif %}
+                    {% else %}
+                      {% if schedule.date.year == year and schedule.date.month == month|add:1 and schedule.date.day == day %}
+                        <div class="schedule-item {{ schedule.related_words|lower }}">
+                          <span class="schedule-dot {{ schedule.related_words }}">●</span>
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
                 </div>
               </td>
               {% endfor %}
