@@ -92,7 +92,7 @@ body {
   vertical-align: top;
   resize: none;
   overflow: hidden;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .text_content p {
@@ -118,7 +118,7 @@ body {
 .btn_div {
   display: flex;
   position: absolute;
-  right: 33px;
+  right: 20px;
   bottom: 0px;
 }
 

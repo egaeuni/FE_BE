@@ -54,11 +54,12 @@ body {
   width: 100%;
   height: 630px;
 
-  margin-top: 20px;
+  margin-top: 40px;
   display: flex;
-  justify-content: space-evenly;
+  gap: 10px;
   flex-wrap: wrap;
   overflow-y: scroll;
+  padding: 0 30px;
 }
 
 .post_wrap::-webkit-scrollbar {
