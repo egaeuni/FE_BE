@@ -14,7 +14,7 @@ button + label:hover {
 }
 
 body {
-  width: 355px;
+  width: 375px;
   height: 779px;
   padding: 33px 0 0;
   border: 1px solid black;
@@ -38,7 +38,7 @@ header img {
   font-size: 18px;
   font-weight: 700;
 
-  width: 345px;
+  width: 365px;
   height: 35px;
   background-color: rgba(201, 153, 249, 0.5);
   border: none;

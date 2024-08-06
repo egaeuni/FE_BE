@@ -1,46 +1,65 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" />
+    <title>효담 - 알림 리스트</title>
+    <link rel="stylesheet" href="{% static 'CSS/notification3.css' %}" />
+  </head>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>알림 리스트</title>
-</head>
-<body>
-    <a href="{{request.META.HTTP_REFERER|escape}}">뒤로 가기</a><br>
-    
-    {% load humanize %}
-    <h1>알림 리스트</h1>
+    <link rel="stylesheet" href="{% static 'CSS/notification2.css' %}" />
+  </head>
 
-    <h2>새로운 알림</h2>
-    <ul>
-        
+  <body>
+    <div class="title">
+      <a href="{{request.META.HTTP_REFERER|escape}}"><img src="{% static 'img/back-btn.png' %}" alt="뒤로가기" width="20.16" height="18.71" /></a>
+      {%load humanize%}
+      <div class="noti">알림</div>
+    </div>
+    <div class="content">
+      <div class="new">
+        <p class="new_title">새로운 알림</p>
         {% for notification in new_notifications %}
-            <li>
-                <strong>{{ notification.message }}</strong> - 
-                {% if notification.formatted_date %}
-                    {{ notification.formatted_date }}
-                {% else %}
-                    {{ notification.naturaltime_date|naturaltime }}
-                {% endif %}
-            </li>
-        {% empty %}
-            <li>새로운 알림이 없습니다.</li>
+        <div class="notifiction">
+          <img src="{% static 'img/notification.png' %}" alt="알림 아이콘" width="40" height="40" />
+          <div class="notification_text">
+            <p class="main_text">{{ notification.message }}</p>
+            {% if notification.formatted_date %}
+            <p class="time">{{ notification.formatted_date }}</p>
+            {% else %}
+            <p class="time">{{ notification.naturaltime_date|naturaltime }}</p>
+            {% endif %}
+          </div>
+          {% empty %}
+        </div>
+        <div class="notification">새로운 알림이 없습니다.</div>
         {% endfor %}
-    </ul>
+      </div>
 
-    <h2>지난 알림</h2>
-    <ul>
+      <div class="past">
+        <p class="past_title">지난 알림</p>
         {% for notification in past_notifications %}
-            <li>
-                {{ notification.message }} - 
-                {% if notification.formatted_date %}
-                    {{ notification.formatted_date }}
-                {% else %}
-                    {{ notification.naturaltime_date|naturaltime }}
-                {% endif %}
-            </li>
+        <div class="notifiction">
+          <img src="{% static 'img/notification.png' %}" alt="알림 아이콘" width="40" height="40" />
+          <div class="notification_text">
+            <p class="main_text">{{ notification.message }}</p>
+            {% if notification.formatted_date %}
+            <p class="time">{{ notification.formatted_date }}</p>
+            {% else %}
+            <p class="time">{{ notification.naturaltime_date|naturaltime }}</p>
+            {% endif %}
+          </div>
+        </div>
         {% empty %}
-            <li>지난 알림이 없습니다.</li>
+        <div class="notification">지난 알림이 없습니다.</div>
         {% endfor %}
-    </ul>
-</body>
+      </div>
+    </div>
+  </body>
 </html>

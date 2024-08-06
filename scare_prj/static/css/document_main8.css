@@ -1,0 +1,164 @@
+@font-face {
+  font-family: "NanumBarunpen";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "NanumBarunpen";
+  -webkit-touch-callout: none;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+a {
+  color: #000;
+  color: var(--main-black);
+  text-decoration: none;
+}
+
+body {
+  width: 375px;
+  height: 812px;
+  position: relative;
+  border: 1px solid black;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-top: 33px;
+  padding-bottom: 3px;
+}
+
+.plus {
+  display: flex;
+  margin-left: 135px;
+  margin-right: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+.content {
+  width: 100%;
+  height: 640px;
+  margin-top: 20px;
+}
+
+.post_wrap {
+  width: 100%;
+  height: 630px;
+
+  margin-top: 40px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  padding: 0 30px;
+}
+
+.post_wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.post {
+  width: 150px;
+  height: 174px;
+  border: 1px solid black;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.post:last-child {
+  margin: 0;
+}
+
+.img_div {
+  margin: 0;
+  height: 90px;
+  overflow: hidden;
+}
+
+.post_title {
+  margin: 0;
+  width: 100%;
+  height: 22px;
+  border-bottom: 1px solid black;
+  background-color: rgb(201, 153, 249, 0.5);
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  padding: 0;
+  padding-top: 6px;
+}
+
+.post_title a:visited,
+.post_title a:link {
+  font-weight: bold;
+  color: #000000;
+  text-decoration: none;
+}
+
+.post_content {
+  margin: 0;
+  margin-top: 7px;
+  width: 132px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.date {
+  margin: 0;
+  color: #999999;
+  font-size: 10px;
+  font-weight: bold;
+  position: absolute;
+  right: 9px;
+  bottom: 5px;
+}
+
+.bottom-navigation {
+  align-items: flex-start !important;
+  background-color: #ffffff;
+  border-radius: 0;
+  border-top: 1.5px solid #e1e1e1 !important;
+  width: 375px;
+  display: flex;
+  height: 3.4rem;
+  padding-top: 12px;
+  margin-top: 67px;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-weight: 700;
+}
+
+.nav-menu .menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.nav-menu .menu .icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.nav-menu .menu span {
+  font-size: 12px;
+}

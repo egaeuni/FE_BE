@@ -1,0 +1,225 @@
+@font-face {
+  font-family: "NanumBarunpen";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "NanumBarunpen";
+  -webkit-touch-callout: none;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+body {
+  width: 375px;
+  height: 812px;
+  border: 1px solid black;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  margin-top: 33px;
+  margin-bottom: 30px;
+}
+header img {
+  width: 35px;
+  height: 35px;
+}
+
+.dateLine {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.date {
+  font-family: NanumBarunpen;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 15px;
+}
+
+#yesterday,
+#tomorrow {
+  display: none;
+}
+
+#yesterday + label,
+#tomorrow + label {
+  display: flex;
+
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list_content a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 313px;
+  height: 35px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.list_content div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.content {
+  font-family: inter;
+  font-weight: 500;
+  font-size: 12px;
+
+  margin-left: 15px;
+}
+
+.time {
+  font-family: inter;
+  font-size: 10px;
+  font-weight: 300;
+  margin-right: 5px;
+}
+
+.check {
+  display: none;
+}
+
+label {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid black;
+  border-radius: 3px;
+}
+
+.check:checked + label {
+  background-image: url(../img/check.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.plus {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.addCl {
+  display: flex;
+  justify-content: end;
+
+  cursor: pointer;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  margin: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+section {
+  height: 568px;
+}
+
+.bottom-navigation {
+  align-items: flex-start !important;
+  background-color: #ffffff;
+  border-radius: 0;
+  border-top: 1.5px solid #e1e1e1 !important;
+  width: 375px;
+  bottom: 0;
+  display: flex;
+  height: 3.4rem;
+  padding-top: 12px;
+  z-index: 10;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-weight: 700;
+}
+
+.nav-menu .menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.nav-menu .menu .icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.nav-menu .menu span {
+  font-size: 12px;
+}
+.bottom-navigation {
+  align-items: flex-start !important;
+  background-color: #ffffff;
+  border-radius: 0;
+  border-top: 1.5px solid #e1e1e1 !important;
+  width: 375px;
+  bottom: 0;
+  display: flex;
+  height: 3.4rem;
+  padding-top: 12px;
+  z-index: 10;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-weight: 700;
+}
+
+.nav-menu .menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.nav-menu .menu .icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.nav-menu .menu span {
+  font-size: 12px;
+}
+
+.checklist-page {
+  padding: 0 20px;
+}

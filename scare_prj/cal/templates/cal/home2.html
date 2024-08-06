@@ -1,12 +1,11 @@
-{% load static %}
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static './css/home_detail.css' %}" />
-
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static './css/home_detail1.css' %}" />
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" >
+    <title>효담 - 홈 세부화면</title>
   </head>
   <body>
     <nav>
@@ -22,13 +21,6 @@
         <div class="rightbox">
           <div class="search">
             <a href="{% url 'checklist:notification' %}"></a>
-            <!--<form class="search-box" action="" method="get">
-              <input
-                class="search-txt"
-                type="text"
-                name=""
-                placeholder="입력하세요"
-              />-->
             <a href="{% url 'cal:search' %}"><button class="search-btn" type="submit">검색</button></a>
           </div>
           <a href="{%url 'checklist:notification'%}"><div class="alarm-btn"></div></a>
@@ -56,38 +48,51 @@
             <tr>
               {% for day, cls in row %}
               <td class="{{ cls }}">
-                {% if cls == 'prev-month' %} {% if month == 1 %}
-                <a href="{% url 'cal:home2' prev_year 12 day %}">{{ day }}</a>
-                {% else %}
-                <a href="{% url 'cal:home2' year prev_month day %}">{{ day }}</a>
-                {% endif %} {% elif cls == 'next-month' %} {% if month == 12 %}
-                <a href="{% url 'cal:home2' next_year 1 day %}">{{ day }}</a>
-                {% else %}
-                <a href="{% url 'cal:home2' year next_month day %}">{{ day }}</a>
-                {% endif %} {% else %}
-                <a href="{% url 'cal:home2' year month day %}">{{ day }}</a>
-                {% endif %}
+                <!-- 날짜 부분 -->
+                <div class="date-container">
+                  <a href="{% url 'cal:home2' year month day %}">{{ day }}</a>
+                </div>
 
-                <!--달력에 일정 보여주기-->
-                {% for schedule in month_schedules %}
-                <!--이번 달-->
-                {% if cls == 'current-month' %} {% if schedule.date.year == year and schedule.date.month == month and schedule.date.day == day %}
-                <div>{{ schedule.title }}</div>
-                {% endif %}
-                <!--이전 달-->
-                {% if cls == 'prev-month' %} {% if month == 1 %} {% if schedule.date.year == year|add:-1 and schedule.date.month == 12 and schedule.date.day ==
-                day %}
-                <div>{{ schedule.title }}</div>
-                {% endif %} {% else %} {% if schedule.date.year == year and schedule.date.month == month|add:-1 and schedule.date.day == day %}
-                <div>{{ schedule.title }}</div>
-                {% endif %} {% endif %}
-                <!--다음 달-->
-                {% if cls == 'next-month' %} {% if month == 12 %} {% if schedule.date.year == year|add:1 and schedule.date.month == 1 and schedule.date.day ==
-                day %}
-                <div>{{ schedule.title }}</div>
-                {% endif %} {% else %} {% if schedule.date.year == year and schedule.date.month == month|add:1 and schedule.date.day == day %}
-                <div>{{ schedule.title }}</div>
-                {% endif %} {% endif %} {% endif %} {% endfor %}
+                <!-- 일정 부분 -->
+                <div class="schedule-container">
+                  {% if cls == 'current-month' %}
+                    {% for schedule in month_schedules %}
+                      {% if schedule.date.year == year and schedule.date.month == month and schedule.date.day == day %}
+                        <div class="schedule-item {{ schedule.related_words|lower }}">
+                          <span class="schedule-dot {{ schedule.related_words }}">●</span>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  {% elif cls == 'prev-month' %}
+                    {% if month == 1 %}
+                      {% if schedule.date.year == year|add:-1 and schedule.date.month == 12 and schedule.date.day == day %}
+                        <div class="schedule-item {{ schedule.related_words|lower }}">
+                          <span class="schedule-dot {{ schedule.related_words }}">●</span>
+                        </div>
+                      {% endif %}
+                    {% else %}
+                      {% if schedule.date.year == year and schedule.date.month == month|add:-1 and schedule.date.day == day %}
+                        <div class="schedule-item {{ schedule.related_words|lower }}">
+                          <span class="schedule-dot {{ schedule.related_words }}">●</span>
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  {% elif cls == 'next-month' %}
+                    {% if month == 12 %}
+                      {% if schedule.date.year == year|add:1 and schedule.date.month == 1 and schedule.date.day == day %}
+                        <div class="schedule-item {{ schedule.related_words|lower }}">
+                          <span class="schedule-dot {{ schedule.related_words }}">●</span>
+                        </div>
+                      {% endif %}
+                    {% else %}
+                      {% if schedule.date.year == year and schedule.date.month == month|add:1 and schedule.date.day == day %}
+                        <div class="schedule-item {{ schedule.related_words|lower }}">
+                          <span class="schedule-dot {{ schedule.related_words }}">●</span>
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                </div>
               </td>
               {% endfor %}
             </tr>
@@ -101,7 +106,7 @@
         <span class="plan-date">{{ selected_day }}일 {{ selected_weekday }}요일</span>
         <div class="planlist">
           {% for schedule in schedules %}
-          <div class="plan-group">
+          <div class="plan-group {{ schedule.related_words|lower }}">
             <div class="titlebar"></div>
             <div class="plan-txt" onclick="saveTitle(this)">
               <a href="{% url 'cal:update_schedule' schedule.id %}">
@@ -113,40 +118,41 @@
           {% empty %} 일정 없음<br /><br />
           {% endfor %}
         </div>
-        <a href="{% url 'cal:add_schedule' year month selected_day %}">
-          <div class="add-btn"></div>
+      </div>
+    </div>
+
+    <div class="addCl">
+      <a href="{% url 'cal:add_schedule' year month selected_day  %}"> <img src="{% static "img/+.png"%}" class="plus" /></a>
+    </div>
+
+    <div class="nav_po">
+      <div class="bottom-navigation">
+        <a class="nav-menu" href="{% url 'cal:home' %}">
+          <div class="menu">
+            <img class="icon" src="{% static 'img/nav-01home.png' %}" />
+            <span>홈</span>
+          </div>
+        </a>
+        <a class="nav-menu" href="{% url 'checklist:home' %}">
+          <div class="menu">
+            <img class="icon" src="{% static 'img/nav-02checklist.png' %}" />
+            <span>체크리스트</span>
+          </div>
+        </a>
+        <a class="nav-menu" href="{% url 'record:home' %}">
+          <div class="menu">
+            <img class="icon" src="{% static 'img/nav-03memo.png' %}" />
+            <span>기록</span>
+          </div>
+        </a>
+        <a class="nav-menu" href="{% url 'accounts:mypage' %}">
+          <div class="menu">
+            <img class="icon" src="{% static 'img/nav-04mypage.png' %}" />
+            <span>마이페이지</span>
+          </div>
         </a>
       </div>
     </div>
-    <!-- nav bar -->
-    <div class="bottom-navigation">
-      <a class="nav-menu" href="{% url 'cal:home' %}">
-        <div class="menu">
-          <!--"{% static './img/logo_pur.png' %}"-->
-          <img class="icon" src="{% static 'img/nav-01home.png' %}" />
-          <span>홈</span>
-        </div>
-      </a>
-      <a class="nav-menu" href="{% url 'checklist:home' %}">
-        <div class="menu">
-          <img class="icon" src="{% static 'img/nav-02checklist.png' %}" />
-          <span>체크리스트</span>
-        </div>
-      </a>
-      <a class="nav-menu" href="{% url 'record:home' %}">
-        <div class="menu">
-          <img class="icon" src="{% static 'img/nav-03memo.png' %}" />
-          <span>기록</span>
-        </div>
-      </a>
-      <a class="nav-menu" href="{% url 'accounts:mypage' %}">
-        <div class="menu">
-          <img class="icon" src="{% static 'img/nav-04mypage.png' %}" />
-          <span>마이페이지</span>
-        </div>
-      </a>
-    </div>
-    <br />
-    <script src="{% static './js/home_detail.js' %}"></script>
+    <script src="{% static './js/home.js' %}"></script>
   </body>
 </html>

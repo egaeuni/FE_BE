@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token }}" />
     <!-- CSRF 토큰을 메타 태그로 추가 -->
-    <link rel="stylesheet" href="{% static "css/checklist2.css" %}">
-    <title>체크 리스트</title>
+    <link rel="stylesheet" href="{% static 'css/checklist4.css' %}" />
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" >
+    <title>효담 - 체크리스트</title>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
@@ -64,7 +65,7 @@
   </head>
   <body>
     <div>
-      <header><img src="{% static "img/logo.png"%}" /></header>
+      <header><img src="{% static './img/logo_pur.png' %}" /></header>
 
       <section>
         <!-- 날짜 이동 버튼 -->
@@ -77,7 +78,7 @@
         </div>
         <!-- 체크리스트 항목 -->
 
-        <div>
+        <div class="checklist-page">
           <ul>
             {% for todo in todos %}
             <li id="todo-{{ todo.id }}" class="list_content">
@@ -92,14 +93,14 @@
                   <!-- prettier-ignore -->
                   <input 
                     type="checkbox" 
-                    id="check1" 
+                    id="check{{ todo.id }}" 
                     class="check" 
                     name="completed" 
                     data-todo-id="{{ todo.id }}"
                     {% if todo.completed %}checked{% endif %}
                     {% if user_role == 'child' %}disabled{% endif %}
                     >
-                  <label for="check1"></label>
+                  <label for="check{{ todo.id }}"></label>
                 </div>
               </a>
             </li>
@@ -115,9 +116,31 @@
     </div>
 
     <!-- nav bar -->
-    <a href="{% url 'cal:home' %}">홈</a>
-    <a href="{% url 'checklist:home' %}">체크리스트</a>
-    <a href="{% url 'record:home' %}">기록</a>
-    <a href="{% url 'accounts:mypage' %}">마이페이지</a>
+    <div class="bottom-navigation">
+      <a class="nav-menu" href="{% url 'cal:home' %}">
+        <div class="menu">
+          <img class="icon" src="{% static 'img/nav-01home_gray.png' %}" />
+          <span>홈</span>
+        </div>
+      </a>
+      <a class="nav-menu" href="{% url 'checklist:home' %}">
+        <div class="menu">
+          <img class="icon" src="{% static 'img/nav-02checklist_pur.png' %}" />
+          <span>체크리스트</span>
+        </div>
+      </a>
+      <a class="nav-menu" href="{% url 'record:home' %}">
+        <div class="menu">
+          <img class="icon" src="{% static 'img/nav-03memo.png' %}" />
+          <span>기록</span>
+        </div>
+      </a>
+      <a class="nav-menu" href="{% url 'accounts:mypage' %}">
+        <div class="menu">
+          <img class="icon" src="{% static 'img/nav-04mypage.png' %}" />
+          <span>마이페이지</span>
+        </div>
+      </a>
+    </div>
   </body>
 </html>

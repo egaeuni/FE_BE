@@ -241,13 +241,14 @@ def unfollow(request, user_id):
 
     if user_to_unfollow in current_user.followings.all():
         current_user.followings.remove(user_to_unfollow)
-        return redirect('accounts:gearing', id=current_user.id)
-    else:
-        return JsonResponse(
-            {"message": "이미 처리된 요청입니다."},
-            status=400,
-            json_dumps_params={'ensure_ascii': False}
-        )
+    if current_user in user_to_unfollow.followings.all():
+        user_to_unfollow.followings.remove(current_user)
+
+    return redirect('accounts:gearing', id=current_user.id) if user_to_unfollow in current_user.followings.all() else JsonResponse(
+        {"message": "연동 계정을 삭제했습니다."},
+        status=400,
+        json_dumps_params={'ensure_ascii': False}
+    )
 
 #알람
 @login_required

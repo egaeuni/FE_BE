@@ -1,31 +1,71 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>기록</title>
-</head>
-<body>
-    로고
-    <hr>
-    {% for record in records %}
-    <h2><a href="{%url 'record:detail' record.id %}">{{ record.title }}</a></h2>
-    <p>{{record.content}}</p>
-    {%if record.image %}
-        <img src="{{record.image.url}}">
-    {%endif%}
-    <p>{{record.created_at|date:"Y.m.d"}}</p><hr>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" />
+    <title>효담 - 기록</title>
+    <link rel="stylesheet" href="{% static 'css/document_main8.css' %}" />
+  </head>
 
-    {% empty %} 작성된 기록이 없습니다. <hr> {% endfor %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document_main</title>
+    <link rel="stylesheet" href="{% static 'css/document_main6.css' %}" />
+  </head>
 
-    <a href="{%url 'record:create' %}">글 작성하기</a>
-
-    <hr>
+  <body>
+    <div class="content">
+      <!--헤더-->
+      <div class="title">
+        <img src="{% static './img/logo_pur.png' %}" alt="효담 로고" width="35" height="35" />
+        <a href="{%url 'record:create' %}"><img src="{% static 'img/+.png' %}" class="plus" /></a>
+      </div>
+      <div class="post_wrap">
+        {% for record in records %}
+        <a href="{%url 'record:detail' record.id %}">
+          <div class="post">
+            <h3 class="post_title">{{ record.title }}</h3>
+            <p class="post_content">{{record.content}}</p>
+            {%if record.image %}
+            <div class="img_div">
+              <img src="{{record.image.url}}" width="130" />
+            </div>
+            {%endif%}
+            <p class="date">{{record.created_at|date:"Y.m.d"}}</p>
+          </div>
+          {% empty %} 작성된 기록이 없습니다.{% endfor %}
+        </a>
+      </div>
+    </div>
     <!-- nav bar -->
-    <a href="{% url 'cal:home' %}">홈</a>
-    <a href="{% url 'checklist:home' %}">체크리스트</a>
-    <a href="{% url 'record:home' %}">기록</a>
-    <a href="{% url 'accounts:mypage' %}">마이페이지</a>
-    <br>
-</body>
+    <div class="bottom-navigation">
+      <a class="nav-menu" href="{% url 'cal:home' %}">
+        <div class="menu">
+          <img class="icon" src="{% static 'img/nav-01home_gray.png' %}" />
+          <span>홈</span>
+        </div>
+      </a>
+      <a class="nav-menu" href="{% url 'checklist:home' %}">
+        <div class="menu">
+          <img class="icon" src="{% static 'img/nav-02checklist.png' %}" />
+          <span>체크리스트</span>
+        </div>
+      </a>
+      <a class="nav-menu" href="{% url 'record:home' %}">
+        <div class="menu">
+          <img class="icon" src="{% static 'img/nav-03memo_pur.png' %}" />
+          <span>기록</span>
+        </div>
+      </a>
+      <a class="nav-menu" href="{% url 'accounts:mypage' %}">
+        <div class="menu">
+          <img class="icon" src="{% static 'img/nav-04mypage.png' %}" />
+          <span>마이페이지</span>
+        </div>
+      </a>
+    </div>
+  </body>
 </html>

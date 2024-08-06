@@ -4,198 +4,141 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static './css/planner_detail.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css"
-    />
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
-    <script
-      src="https://code.jquery.com/jquery-1.12.3.min.js"
-      integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
-      crossorigin="anonymous"
-    ></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/planner_detail_update.css' %}" />
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
-    <script
-      type="text/javascript"
-      src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"
-    ></script>
-    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/locales/bootstrap-datepicker.ko.min.js"
-      integrity="sha512-L4qpL1ZotXZLLe8Oo0ZyHrj/SweV7CieswUODAAPN/tnqN3PA1P+4qPu5vIryNor6HQ5o22NujIcAZIfyVXwbQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script type="text/javascript" src="{% static './js/bootstrap-material-datetimepicker.js' %}"></script>
-
-    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script type="text/javascript" src="{% static 'js/planner_detail.js' %}"></script>
     <script>
-        (function (i, s, o, g, r, a, m) {
-          i["GoogleAnalyticsObject"] = r;
-          (i[r] =
-            i[r] ||
-            function () {
-              (i[r].q = i[r].q || []).push(arguments);
-            }),
-            (i[r].l = 1 * new Date());
-          (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-          a.async = 1;
-          a.src = g;
-          m.parentNode.insertBefore(a, m);
-        })(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
-  
-        ga("create", "UA-60343429-1", "auto");
-        ga("send", "pageview");
-      </script>
-</head>
-    <meta charset="UTF-8">
-    <title>일정 수정</title>
+        function adjustHour() {
+            var hourInput = document.getElementById('time_hour');
+            var hourValue = parseInt(hourInput.value, 10);
+
+            if (hourValue >= 13) {
+                hourInput.value = hourValue - 12;
+            }
+        }
+
+        function onFormSubmit() {
+            adjustHour();
+            document.getElementById('scheduleForm').submit();
+        }
+    </script>
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" >
+    <title>효담 - 일정 수정하기</title>
 </head>
 <body>
     <nav>
         <div class="title">
-            <a href="{{request.META.HTTP_REFERER|escape}}"><div class="back-btn"></div></a>
-          <span class="page-title">일정 추가</span>
+            <a href="{{ request.META.HTTP_REFERER|escape }}"><div class="back-btn"></div></a>
+            <span class="page-title">일정 수정</span>
         </div>
         <div class="divider"></div>
     </nav>
-    <form method="POST">
+    <form id="scheduleForm" method="POST">
         {% csrf_token %}
         <div class="plan-title">
             <div class="form-group is-empty">
-        <input type="text"
-        class="form-control plan-input"
-        
-        id="plan-title-input"
-        name="title"
-        value="{{ context.schedule.title }}">
-</div></div>
-        시간:
-        <select name="am_pm">
-            <option value="AM" {% if context.selected_am_pm == "AM" %}selected{% endif %}>오전</option>
-            <option value="PM" {% if context.selected_am_pm == "PM" %}selected{% endif %}>오후</option>
-        </select>
-        <select name="time_hour">
-            {% for hour in context.hours %}
-            <option value="{{ hour }}" {% if hour == context.selected_hour %}selected{% endif %}>{{ hour }}</option>
-            {% endfor %}
-        </select>
-        시
-        <select name="time_minute">
-            {% for minute in context.minutes %}
-            <option value="{{ minute }}" {% if minute == context.selected_minute %}selected{% endif %}>{{ minute }}</option>
-            {% endfor %}
-        </select>
-        분<br><br>
-        
-        관련 단어:<br>
-        {% for keyword in context.existing_keywords %}
-        <input type="checkbox" name="related_words" value="{{ keyword }}" {% if keyword in context.schedule.related_words %}checked{% endif %}>{{ keyword }}<br>
-        {% endfor %}
+                <input type="text" class="form-control plan-input" id="plan-title-input" name="title" value="{{ context.schedule.title }}">
+            </div>
+            <div class="divider"></div>
+        </div>
+        <div class="plan-detail">
+            <div class="plan-detail-time">
+                <div class="top-row">
+                    <div class="icon"></div>
+                    <span>시간</span>
+                </div>
+                <div class="setting-time">
+                    <input type="text" id="am_pm_input" class="form-control" readonly value="{{ context.selected_am_pm }}" />
+                    <input type="text" id="time_hour_input" class="form-control" readonly value="{{ context.selected_hour }}" /> 시
+                    <input type="text" id="time_minute_input" class="form-control" readonly value="{{ context.selected_minute }}" /> 분
 
-        <label>관련 단어 추가:</label>
-        <input type="text" name="additional_word"><br><br>
+                    <input type="hidden" id="am_pm" name="am_pm" value="{{ context.selected_am_pm }}" />
+                    <input type="hidden" id="time_hour" name="time_hour" value="{{ context.selected_hour }}" />
+                    <input type="hidden" id="time_minute" name="time_minute" value="{{ context.selected_minute }}" />
+                </div>
+                <!-- Hidden timepicker -->
+                <input type="text" id="timepicker" />
+            </div>
+            <div class="divider"></div>
+            <div class="plan-detail-category">
+                <div class="top-row">
+                    <div class="icon"></div>
+                    <span>관련 단어</span>
+                </div>
+                <div class="setting-category">
+                    {% for keyword in context.existing_keywords %}
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" name="related_words" value="{{ keyword }}" {% if keyword in context.schedule.related_words %}checked{% endif %}>
+                        <label for="{{ keyword }}" class="checkbox-label" value="{{ keyword }}">{{ keyword }}</label><br>
+                    </div>
+                    {% endfor %}
+                </div>
+                <label>관련 단어 추가:</label>
+                <input type="text" name="additional_word">
+            </div>
+        </div>
 
-        <input type="submit" value="완료">
+        <div class="plan-settingbtn">
+            <a href="{% url 'cal:delete_schedule' context.schedule.id %}"><div class="cancel-btn">삭제</div></a>
+            <div class="submit-btn"><input class="plan-submit-btn" type="button" value="완료" onclick="onFormSubmit()"></div>
+        </div>
     </form>
 
-    
-    <a href="{% url 'cal:delete_schedule' context.schedule.id %}">삭제하기</a>
-    
     <script type="text/javascript">
         $(document).ready(function () {
-          moment.locale("ko");
-  
-          $("#date").bootstrapMaterialDatePicker({
-            time: false,
-            clearButton: true,
-            format: "YYYY-MM-DD",
-          });
-  
-          $("#time").bootstrapMaterialDatePicker({
-            date: false,
-            shortTime: false,
-            lang: "ko",
-            cancelText: "취소",
-            format: "HH:mm",
-          });
-  
-          $("#date-format").bootstrapMaterialDatePicker({
-            format: "YYYY-MM-DD HH:mm",
-          });
-  
-          $("#date-fr").bootstrapMaterialDatePicker({
-            format: "YYYY-MM-DD HH:mm",
-            lang: "ko",
-            weekStart: 1,
-            cancelText: "취소",
-            nowButton: true,
-            switchOnClick: true,
-          });
-  
-          $("#date-end").bootstrapMaterialDatePicker({
-            weekStart: 0,
-            format: "YYYY-MM-DD HH:mm",
-          });
-  
-          $("#date-start")
-            .bootstrapMaterialDatePicker({
-              weekStart: 0,
-              format: "YYYY-MM-DD HH:mm",
-              shortTime: true,
-            })
-            .on("change", function (e, date) {
-              $("#date-end").bootstrapMaterialDatePicker("setMinDate", date);
+            moment.locale("ko");
+
+            $("#timepicker").bootstrapMaterialDatePicker({
+                date: false,
+                shortTime: true,
+                lang: "ko",
+                cancelText: "취소",
+                format: "HH:mm",
+                nowButton: false,
+            }).on('change', function (e, date) {
+                var timeString = moment(date).format('HH:mm');
+                var hours = timeString.split(':')[0];
+                var minutes = timeString.split(':')[1];
+
+                // Update input fields
+                $("#time_hour").val(hours);
+                $("#time_minute").val(minutes);
+
+                // Determine AM/PM
+                var amPm = hours < 12 ? 'AM' : 'PM';
+                hours = hours % 12 || 12;
+                $("#am_pm").val(amPm);
+
+                // Set timepicker input value
+                $("#am_pm_input").val(amPm);
+                $("#time_hour_input").val(hours);
+                $("#time_minute_input").val(minutes);
             });
-  
-          $("#min-date").bootstrapMaterialDatePicker({
-            format: "YYYY-MM-DD HH:mm",
-            minDate: new Date(),
-          });
-  
-          $.material.init();
-  
-          $("#add-category").click(function () {
-            var categoryText = $("#category-input").val().trim();
-            if (categoryText) {
-              var color = "#" + Math.floor(Math.random() * 16777215).toString(16);
-              $("#tag-container").prepend(
-                '<div class="tag" style="background-color: ' +
-                  color +
-                  ';">' +
-                  categoryText +
-                  '<button class="remove-tag">&times;</button>' +
-                  "</div>"
-              );
-              $("#category-input").val(""); // Clear the input field
-            }
-          });
-  
-          $(document).on("click", ".remove-tag", function () {
-            $(this).parent().remove();
-          });
+
+            // Show timepicker when any time input field is clicked
+            $("#am_pm_input, #time_hour_input, #time_minute_input").click(function () {
+                $("#timepicker").focus();
+            });
         });
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-          const title = localStorage.getItem("selectedTitle");
-          if (title) {
-            document.getElementById("plan-title-input").value = title;
-            localStorage.removeItem("selectedTitle"); // Clear the stored title
-          }
+            const title = localStorage.getItem("selectedTitle");
+            if (title) {
+                document.getElementById("plan-title-input").value = title;
+                localStorage.removeItem("selectedTitle"); // Clear the stored title
+            }
         });
     </script>
     <script>
         document.querySelector(".back-btn").addEventListener("click", function () {
-          window.history.back();
+            window.history.back();
         });
     </script>
 </body>

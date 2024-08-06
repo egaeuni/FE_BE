@@ -4,7 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static "css/gearing3.css" %}">
+    <link rel="stylesheet" href="{% static "css/gearing7.css" %}">
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" />
     <title>효담 - 연동하기</title>
     <style>
       /* 기본적인 모달 스타일 */
@@ -79,8 +80,7 @@
           <label for="search_icon"></label>
         </form>
 
-        {% if searched %}
-        {% if searched_user %}
+        {% if searched %} {% if searched_user %}
         <ul class="search_result">
           <li class="list_o">
             <div class="applyLine">
@@ -100,48 +100,45 @@
         </ul>
         {% else %}
         <p class="none">일치하는 계정이 없습니다.</p>
-        {% endif %}
-        {% endif %}
+        {% endif %} {% endif %}
       </div>
     </section>
 
     <section class="sec3">
       <div class="secTitle">연동 계정 삭제</div>
-    
-    {% if followers %}
-    <ul class="conns">
-      {% for follower in followers %}
-      <li>
-        <div class="list_o">
-          <div class="delLine">
-            <img src="{% static "img/o.png"%}" />
-            <div class="name">{{ follower.nickname }}</div>
-          </div>
-        </div>
-        <form class="unfollow-form" action="{% url 'accounts:unfollow' follower.id %}" method="post">
-          {% csrf_token %}
-          <button type="submit" id="delete"></button>
-          <label for="delete">삭제</label>
-        </form>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>연동된 계정이 없습니다.</p>
-    {% endif %}
-    </section>
 
+      {% if followers %}
+      <ul class="conns">
+        {% for follower in followers %}
+        <li>
+          <div class="list_o">
+            <div class="delLine">
+              <img src="{% static "img/o.png"%}" />
+              <div class="name">{{ follower.nickname }}</div>
+            </div>
+          </div>
+          <form class="unfollow-form" action="{% url 'accounts:unfollow' follower.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" id="delete"></button>
+            <label for="delete">삭제</label>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>연동된 계정이 없습니다.</p>
+      {% endif %}
+    </section>
 
     <!-- 모달 -->
     <div class="modal_po">
       <div id="notification-modal" class="modal">
-      <div class="modal-content">
-        <p id="notification-message"></p>
-        <button id="notification-confirm">확인</button>
+        <div class="modal-content">
+          <p id="notification-message"></p>
+          <button id="notification-confirm">확인</button>
+        </div>
       </div>
     </div>
-    </div>
-    
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -193,6 +190,13 @@
             document.getElementById("notification-modal").style.display = "none";
           }
         };
+      });
+
+      //삭제 버튼 눌렀을 때 새로고침
+      document.body.addEventListener("click", function (event) {
+        if (event.target.id === "delete") {
+          location.reload();
+        }
       });
     </script>
   </body>

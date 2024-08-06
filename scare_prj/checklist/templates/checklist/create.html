@@ -1,18 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="{{request.META.HTTP_REFERER|escape}}">뒤로 가기</a><br>
-    
-    <h1>체크리스트 항목 추가</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">저장</button>
-    </form>
-</body>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>효담 - 체크리스트 추가하기</title>
+    <link rel="stylesheet" href="CSS/mk_checklist.css" />
+    <link rel="stylesheet" href="{% static 'css/mk_checklist1.css' %}" />
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" >
+  </head>
+
+  <body>
+    <div class="content">
+      <div class="title">
+        <a href=" {% url 'checklist:home' %}"><img src="{% static 'img/back-btn.png' %}" alt="뒤로가기" width="20.16" height="18.71" /></a>
+        <h3>체크리스트 생성</h3>
+      </div>
+
+      <form method="post" class="create_form">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="submit_btn">완료</button>
+      </form>
+    </div>
+  </body>
 </html>

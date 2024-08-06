@@ -1,0 +1,172 @@
+@font-face {
+  font-family: "NanumBarunpen";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "NanumBarunpen";
+  -webkit-touch-callout: none;
+}
+
+body {
+  width: 375px;
+  height: 779px;
+  border: 1px solid black;
+  position: relative;
+  padding-top: 33px;
+}
+
+.title {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid black;
+  flex-direction: column;
+}
+.title > img {
+  margin-bottom: 10px;
+}
+
+.h {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.h h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.title div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.back {
+  position: absolute;
+  left: 22.22px;
+  top: 3px;
+}
+
+.content {
+  margin-top: 15px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileInputLabel img {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.text_div {
+  display: flex;
+  flex-direction: column;
+  width: 346px;
+}
+
+.img_div {
+  width: 330px;
+  height: 250px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.text_title {
+  border: none;
+  width: 330px;
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 6px;
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 16px;
+}
+
+.rec_content {
+  height: 300px;
+}
+
+.text_content {
+  margin-top: 15px;
+  border: none;
+  width: 330px;
+  vertical-align: top;
+  resize: none;
+  overflow: hidden;
+  font-size: 20px;
+  padding-left: 16px;
+}
+
+.text_content::placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, 0);
+  padding-left: 16px;
+}
+
+.file_submit {
+  display: flex;
+  width: 346px;
+  justify-content: space-between;
+  margin-top: 35px;
+  align-items: center;
+}
+
+.btn_div {
+  display: flex;
+  position: absolute;
+  right: 33px;
+  bottom: 19px;
+}
+
+.img_btn {
+  display: flex;
+  position: absolute;
+  left: 33px;
+  bottom: 21px;
+}
+
+.submit_btn {
+  border: 1px solid rgb(0, 0, 0, 0.3);
+  font-size: 18px;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 5px;
+  width: 70px;
+  height: 35px;
+  margin: 0;
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.1);
+}
+
+.submit_btn.active {
+  background-color: rgb(217, 217, 217, 0.3);
+}
+
+input {
+  outline: none;
+}
+
+textarea {
+  outline: none;
+}
+
+.input_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.83em;
+}

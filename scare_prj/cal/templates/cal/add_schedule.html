@@ -1,44 +1,143 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/planner_detail_add.css' %}" />
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script type="text/javascript" src="{% static 'js/planner_detail.js' %}"></script>
+    <script>
+        function adjustHour() {
+            var hourInput = document.getElementById('time_hour');
+            var hourValue = parseInt(hourInput.value, 10);
+
+            if (hourValue >= 13) {
+                hourInput.value = hourValue - 12;
+            }
+        }
+
+        function onFormSubmit() {
+            adjustHour();
+            document.getElementById('scheduleForm').submit();
+        }
+    </script>
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" >
+    <title>효담 - 일정 추가하기</title>
 </head>
 <body>
-    <a href="{{request.META.HTTP_REFERER|escape}}">뒤로 가기</a><br>
-    <h1>일정 추가</h1>
-    <form method="POST">
+    <nav>
+        <div class="title">
+            <a href="{{ request.META.HTTP_REFERER|escape }}"><div class="back-btn"></div></a>
+            <span class="page-title">일정 추가</span>
+        </div>
+        <div class="divider"></div>
+    </nav>
+    <form id="scheduleForm" method="POST" action="{% url 'cal:add_schedule' year month day %}">
         {% csrf_token %}
-        제목: <input type="text" name="title"><br><br>
-
-        시간:
-        <select name="am_pm">
-            <option value="AM">오전</option>
-            <option value="PM">오후</option>
-        </select>
-        <select name="time_hour">
-            {% for hour in hours %}
-            <option value="{{ hour }}">{{ hour }}</option>
-            {% endfor %}
-        </select>
-        시
-        <select name="time_minute">
-            {% for minute in minutes %}
-            <option value="{{ minute }}">{{ minute }}</option>
-            {% endfor %}
-        </select>
-        분<br><br>
-
-        관련 단어:<br>
-        {% for keyword in existing_keywords %}
-        <input type="checkbox" name="related_words" value="{{ keyword }}">{{ keyword }}<br>
-        {% endfor %}
-
-        <label>관련 단어 추가:</label>
-        <input type="text" name="additional_word"><br><br>
-
-        <input type="submit" value="완료">
+        <div class="plan-title">
+            <input type="text" class="form-control plan-input" name="title" placeholder="일정 입력">
+            <div class="divider"></div>
+        </div>
+        <div class="plan-detail">
+            <div class="plan-detail-time">
+                <div class="top-row">
+                    <div class="icon"></div>
+                    <span>시간</span>
+                </div>
+                <div class="setting-time">
+                    <input type="text" id="am_pm_input" class="form-control" readonly placeholder="AM" />
+                    <input type="text" id="time_hour_input" class="form-control" readonly placeholder="00" /> 시
+                    <input type="text" id="time_minute_input" class="form-control" readonly placeholder="00" /> 분
+                    <input type="hidden" id="am_pm" name="am_pm" />
+                    <input type="hidden" id="time_hour" name="time_hour" />
+                    <input type="hidden" id="time_minute" name="time_minute" />
+                </div>
+                <!-- Hidden timepicker -->
+                <input type="text" id="timepicker" />
+            </div>
+            <div class="divider"></div>
+            <div class="plan-detail-category">
+                <div class="top-row">
+                    <div class="icon"></div>
+                    <span>관련 단어</span>
+                </div>
+                <div class="setting-category">
+                    {% for keyword in existing_keywords %}
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="{{ keyword }}" name="related_words" value="{{ keyword }}">
+                        <label for="{{ keyword }}" class="checkbox-label" value="{{ keyword }}">{{ keyword }}</label><br>
+                    </div>
+                    {% endfor %}
+                </div>
+                <label>관련 단어 추가:</label>
+                <input type="text" name="additional_word">
+            </div>
+        </div>
+        <div class="plan-settingbtn">
+            <div class="plan-settingbtn">
+                <input class="plan-submit-btn" type="button" value="완료" onclick="onFormSubmit()">
+            </div>
+        </div>
     </form>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            moment.locale("ko");
+
+            $("#timepicker").bootstrapMaterialDatePicker({
+                date: false,
+                shortTime: true,
+                lang: "ko",
+                cancelText: "취소",
+                
+                format: "HH:mm",
+                nowButton: false,
+            }).on('change', function (e, date) {
+                var timeString = moment(date).format('HH:mm');
+                var hours = timeString.split(':')[0];
+                var minutes = timeString.split(':')[1];
+
+                // Update input fields
+                $("#time_hour").val(hours);
+                $("#time_minute").val(minutes);
+                
+                // Determine AM/PM
+                var amPm = hours < 12 ? 'AM' : 'PM';
+                hours = hours % 12 || 12;
+                $("#am_pm").val(amPm);
+
+                // Set timepicker input value
+                $("#am_pm_input").val(amPm);
+                $("#time_hour_input").val(hours);
+                $("#time_minute_input").val(minutes);
+            });
+
+            // Show timepicker when any time input field is clicked
+            $("#am_pm_input, #time_hour_input, #time_minute_input").click(function () {
+                $("#timepicker").focus();
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const title = localStorage.getItem("selectedTitle");
+            if (title) {
+                document.getElementById("plan-title-input").value = title;
+                localStorage.removeItem("selectedTitle"); // Clear the stored title
+            }
+        });
+    </script>
+    <script>
+        document.querySelector(".back-btn").addEventListener("click", function () {
+            window.history.back();
+        });
+    </script>
 </body>
 </html>

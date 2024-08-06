@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static './css/home.css' %}" />
-    <title>Document</title>
+    <link rel="icon" href="{% static 'img/logo_pur.png' %}" >
+    <title>효담 - 홈 화면</title>
   </head>
   <body>
     <nav>
@@ -36,66 +37,70 @@
     </nav>
 
     <!-- 달력 -->
-    <div class="container-schedule">
-      <div class="schedule">
-        <table class="month">
-          <thead>
-            <tr>
-              <th>일</th>
-              <th>월</th>
-              <th>화</th>
-              <th>수</th>
-              <th>목</th>
-              <th>금</th>
-              <th>토</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for row in cal_rows %}
-            <tr>
-              {% for day, cls in row %}
-              <td class="{{ cls }}">
-                <!--링크를 위한 태그-->
-                {% if cls == 'prev-month' %} {% if month == 1 %}
-                <a href="{% url 'cal:home2' prev_year 12 day %}">{{ day }}</a>
-                {% else %}
-                <a href="{% url 'cal:home2' year prev_month day %}">{{ day }}</a>
-                {% endif %} {% elif cls == 'next-month' %} {% if month == 12 %}
-                <a href="{% url 'cal:home2' next_year 1 day %}">{{ day }}</a>
-                {% else %}
-                <a href="{% url 'cal:home2' year next_month day %}">{{ day }}</a>
-                {% endif %} {% else %}
-                <a href="{% url 'cal:home2' year month day %}">{{ day }}</a>
-                {% endif %}
+<div class="container-schedule">
+  <div class="schedule">
+    <table class="month">
+      <thead>
+        <tr>
+          <th>일</th>
+          <th>월</th>
+          <th>화</th>
+          <th>수</th>
+          <th>목</th>
+          <th>금</th>
+          <th>토</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in cal_rows %}
+        <tr>
+          {% for day, cls in row %}
+          <td class="{{ cls }}">
+            <!-- 날짜 부분 -->
+            <div class="date-container">
+              <a href="{% url 'cal:home2' year month day %}">{{ day }}</a>
+            </div>
 
-                <!--달력에 일정 보여주기-->
-                {% for schedule in month_schedules %}
-                <!--이번 달-->
-                {% if cls == 'current-month' %} {% if schedule.date.year == year and schedule.date.month == month and schedule.date.day == day %}
-                <div>{{ schedule.title }}</div>
-                {% endif %}
-                <!--이전 달-->
-                {% if cls == 'prev-month' %} {% if month == 1 %} {% if schedule.date.year == year|add:-1 and schedule.date.month == 12 and schedule.date.day ==
-                day %}
-                <div>{{ schedule.title }}</div>
-                {% endif %} {% else %} {% if schedule.date.year == year and schedule.date.month == month|add:-1 and schedule.date.day == day %}
-                <div>{{ schedule.title }}</div>
-                {% endif %} {% endif %}
-                <!--다음 달-->
-                {% if cls == 'next-month' %} {% if month == 12 %} {% if schedule.date.year == year|add:1 and schedule.date.month == 1 and schedule.date.day ==
-                day %}
-                <div>{{ schedule.title }}</div>
-                {% endif %} {% else %} {% if schedule.date.year == year and schedule.date.month == month|add:1 and schedule.date.day == day %}
-                <div>{{ schedule.title }}</div>
-                {% endif %} {% endif %} {% endif %} {% endfor %}
-              </td>
-              {% endfor %}
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
+            <!-- 일정 부분 -->
+            <div class="schedule-container">
+  {% for schedule in month_schedules %}
+    {% if cls == 'current-month' %}
+      {% if schedule.date.year == year and schedule.date.month == month and schedule.date.day == day %}
+        <div class="schedule-item {{ schedule.related_words|lower }}">{{ schedule.title }}</div>
+      {% endif %}
+    {% elif cls == 'prev-month' %}
+      {% if month == 1 %}
+        {% if schedule.date.year == year|add:-1 and schedule.date.month == 12 and schedule.date.day == day %}
+          <div class="schedule-item {{ schedule.related_words|lower }}">{{ schedule.title }}</div>
+        {% endif %}
+      {% else %}
+        {% if schedule.date.year == year and schedule.date.month == month|add:-1 and schedule.date.day == day %}
+          <div class="schedule-item {{ schedule.related_words|lower }}">{{ schedule.title }}</div>
+        {% endif %}
+      {% endif %}
+    {% elif cls == 'next-month' %}
+      {% if month == 12 %}
+        {% if schedule.date.year == year|add:1 and schedule.date.month == 1 and schedule.date.day == day %}
+          <div class="schedule-item {{ schedule.related_words|lower }}">{{ schedule.title }}</div>
+        {% endif %}
+      {% else %}
+        {% if schedule.date.year == year and schedule.date.month == month|add:1 and schedule.date.day == day %}
+          <div class="schedule-item {{ schedule.related_words|lower }}">{{ schedule.title }}</div>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</div>
+
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
     <!-- nav bar -->
     <div class="bottom-navigation">
@@ -125,7 +130,6 @@
         </div>
       </a>
     </div>
-    <br />
+    <script src="{% static './js/home.js' %}"></script>
   </body>
-  <script src="{% static './js/home.js' %}"></script>
 </html>

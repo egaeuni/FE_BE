@@ -1,7 +1,6 @@
 @font-face {
   font-family: "NanumBarunpen";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff")
-    format("woff");
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -15,6 +14,7 @@ a,
 button {
   cursor: pointer;
 }
+
 a {
   color: #000;
   color: var(--main-black);
@@ -23,8 +23,7 @@ a {
 
 body {
   width: 375px;
-  height: 667px;
-  margin: 0;
+  height: 812px;
   border: 1px solid black;
 }
 
@@ -91,21 +90,16 @@ nav .nav-title .date {
   margin-left: 15px;
 }
 
-.container-schedule .schedule {
-  padding: 15px 0;
-}
-
 .bottom-navigation {
   align-items: flex-start !important;
   background-color: #ffffff;
   border-radius: 0;
   border-top: 1.5px solid #e1e1e1 !important;
-  width: 100%;
+  width: 375px;
   bottom: 0;
   display: flex;
   height: 3.4rem;
-  padding: 12px 0;
-  position: fixed;
+  padding-top: 12px;
   z-index: 10;
 }
 
@@ -115,6 +109,7 @@ nav .nav-title .date {
   align-items: center;
   justify-content: center;
   width: 100%;
+  font-weight: 700;
 }
 
 .nav-menu .menu {
@@ -133,11 +128,9 @@ nav .nav-title .date {
   font-size: 12px;
 }
 
-
 .container-schedule .schedule {
   background-color: rgb(255, 255, 255);
-  height: 400px;
-  padding: 0 20px 0 20px;
+  padding: 20px 0;
 }
 
 .dayoff {
@@ -148,10 +141,72 @@ nav .nav-title .date {
   color: #1a55ee;
 }
 
-thead th {
-  padding: 10px 22px 10px 10px;
+thead th:first-child {
+  color: red; /* 일요일 색상 */
 }
 
+thead th:last-child {
+  color: #1a55ee; /* 토요일 색상 */
+}
+
+thead th {
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  font-size: 13px;
+}
+
+/* 날짜와 일정 제목 구분 */
 td {
-  padding: 10px 22px 45px 10px;
+  position: relative; /* 날짜와 일정을 포함할 영역을 상대 위치로 설정 */
+  padding: 1px; /* 필요한 여백 추가 */
+  vertical-align: top; /* 날짜가 상단에 위치하도록 설정 */
+}
+
+.date-container {
+  text-align: center;
+  margin-bottom: 2px; /* 날짜와 일정 제목 사이의 간격 조정 */
+  width: 50px;
+}
+
+.schedule-container {
+  margin-top: 5px; /* 날짜와 일정 제목 사이의 간격 조정 */
+  height: 90px;
+}
+
+.schedule-item {
+  font-size: 10px; /* 일정 제목 크기 조정 */
+  background-color: #c3c3c3;
+  margin: 2px 0;
+  border-radius: 5px;
+  width: 50px;
+  color: #000; /* 일정 제목 색상 조정 */
+  text-align: center; /* 일정 제목을 중앙 정렬 */
+}
+
+.schedule-item {
+  font-size: 10px; /* 일정 제목 크기 조정 */
+  margin: 2px 0;
+  border-radius: 5px;
+  width: 50px;
+  color: #000; /* 일정 제목 색상 조정 */
+  text-align: center; /* 일정 제목을 중앙 정렬 */
+}
+
+.schedule-item.입원 {
+  background-color: #baeeff; /* 입원일 경우 색상 */
+}
+
+.schedule-item.수술 {
+  background-color: #ffb6c1; /* 수술일 경우 색상 */
+}
+
+.schedule-item.처방 {
+  background-color: #daffda; /* 처방일 경우 색상 */
+}
+
+.schedule-item.진료 {
+  background-color: #ffffa5; /* 진료일 경우 색상 */
 }
