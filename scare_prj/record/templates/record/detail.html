@@ -25,7 +25,7 @@
           <p>{{record.content}}</p>
           {%if record.image %}
           <div>
-            <img src="{{record.image.url}}" class="content_img" style="max-width: 300px; max-height: 300px" />
+            <img src="{{record.image.url}}" class="content_img" />
           </div>
           {%endif%}
           <div class="date">{{record.created_at|date:"Y.m.d"}}</div>
