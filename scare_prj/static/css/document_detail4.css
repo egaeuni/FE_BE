@@ -156,4 +156,8 @@ button {
 
 .content_img {
   margin: 30px 10px;
+  min-width: 100px;
+  max-width: 300px;
+  min-height: 100px;
+  max-height: 300px;
 }

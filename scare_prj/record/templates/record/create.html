@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{% static 'img/logo_pur.png' %}" />
     <title>효담 - 기록 추가하기</title>
-    <link rel="stylesheet" href="{% static 'css/document_create1.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/document_create2.css' %}" />
   </head>
 
   <body>
     <div class="content">
       <div class="title">
         <img src="{% static 'img/Logo.png' %}" alt="효담 로고" width="35" height="35" />
-        <div>
-          <a href="{%url 'record:home'%}" class="back"> <img src="{% static 'img/back-btn.png' %}" width="20.16" height="18.71" /></a>
+        <div class="h">
+          <a href="{%url 'record:home'%}" class="back"> <img src="{% static 'img/back-btn.png' %}" width="23" height="23" /></a>
           <h3>기록 생성</h3>
         </div>
       </div>
@@ -22,11 +22,14 @@
         {% csrf_token %}
         <div class="text_div">
           <input type="text" name="title" class="text_title" placeholder="제목을 입력해 주세요." id="text_title" />
-          <textarea class="text_content" name="content" placeholder="내용을 작성해 주세요." id="text_content"></textarea>
+          <div class="re_content">
+            <textarea class="text_content" name="content" placeholder="내용을 작성해 주세요." id="text_content"></textarea>
+            <div class="img_div">
+              <img id="image-preview" src="" alt="Image Preview" />
+            </div>
+          </div>
         </div>
-        <div class="img_div">
-          <img id="image-preview" src="" alt="Image Preview" style="max-width: 300px; max-height: 300px; display: none" />
-        </div>
+
         <div class="file_submit">
           <input type="file" class="fileInput" name="image" id="fileInput" accept="image/*" style="display: none" />
           <label for="fileInput" class="fileInputLabel" id="fileInputLabel">
@@ -45,9 +48,10 @@
         if (file) {
           const reader = new FileReader();
           reader.onload = function (e) {
+            const imgdiv = document.querySelector(".img_div");
             const preview = document.getElementById("image-preview");
             preview.src = e.target.result;
-            preview.style.display = "block";
+            imgdiv.style.display = "block";
           };
           reader.readAsDataURL(file);
         }
