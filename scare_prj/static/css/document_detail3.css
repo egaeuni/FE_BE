@@ -1,0 +1,144 @@
+@font-face {
+  font-family: "NanumBarunpen";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "NanumBarunpen";
+  -webkit-touch-callout: none;
+}
+
+body {
+  border: 1px solid black;
+  width: 375px;
+  height: 812px;
+  position: relative;
+}
+
+.title {
+  width: 100%;
+  height: 93px;
+  display: flex;
+  margin-top: 46px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid black;
+  flex-direction: column;
+}
+
+.title h3 {
+  margin: 0;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.title div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.back {
+  position: absolute;
+  left: 22.22px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileInputLabel img {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.text_div {
+  display: flex;
+  flex-direction: column;
+  width: 346px;
+}
+
+.text_title {
+  border: none;
+  width: 330px;
+  border-bottom: 1px solid #d9d9d9;
+  padding-left: 16px;
+  padding-bottom: 6px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.text_content {
+  font-size: 14px;
+  margin-top: 15px;
+  border: none;
+  width: 346px;
+  height: 500px;
+  vertical-align: top;
+  resize: none;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.text_content p {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 14px;
+}
+
+.text_content::placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, 0);
+}
+
+.file_submit {
+  display: flex;
+  width: 346px;
+  justify-content: space-between;
+  margin-top: 35px;
+  align-items: center;
+}
+
+.btn_div {
+  display: flex;
+  position: absolute;
+  right: 33px;
+  bottom: 19px;
+}
+
+button {
+  border: 1px solid rgb(0, 0, 0, 0.3);
+  font-size: 18px;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 5px;
+  width: 70px;
+  height: 35px;
+  margin: 0;
+  margin-right: 4px;
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.1);
+}
+
+.date {
+  display: flex;
+  justify-content: end;
+  color: #999999;
+  margin-top: 10px;
+  margin-right: 10px;
+}
