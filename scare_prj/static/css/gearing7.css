@@ -211,3 +211,7 @@ p {
   justify-content: center;
   align-items: center;
 }
+
+.conns li {
+  margin-bottom: 10px;
+}

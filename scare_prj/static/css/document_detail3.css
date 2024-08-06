@@ -14,6 +14,7 @@ body {
   border: 1px solid black;
   width: 375px;
   height: 812px;
+  position: relative;
 }
 
 .title {
@@ -49,11 +50,9 @@ body {
 }
 
 .content {
-  margin-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 }
 
 .fileInput {
@@ -119,8 +118,8 @@ body {
 .btn_div {
   display: flex;
   position: absolute;
-  right: 20px;
-  bottom: 0px;
+  right: 33px;
+  bottom: 19px;
 }
 
 button {
