@@ -310,21 +310,16 @@ td {
   background-color: #ffffa5; /* 진료일 경우 색상 */
 }
 
-.schedule-item.입원 {
-  color: #baeeff; /* 입원일 경우 색상 */
+.schedule-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
 }
-
-.schedule-item.수술 {
-  color: #ffb6c1; /* 수술일 경우 색상 */
-}
-
-.schedule-item.처방 {
-  color: #daffda; /* 처방일 경우 색상 */
-}
-
-.schedule-item.진료 {
-  color: #ffffa5; /* 진료일 경우 색상 */
-}
+.schedule-dot.입원 { color: #baeeff; }
+.schedule-dot.수술 { color: #ffb6c1; }
+.schedule-dot.처방 { color: #daffda; }
+.schedule-dot.진료 { color: #ffffa5; }
 
 .addCl img {
   width: 30px;
