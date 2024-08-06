@@ -1,17 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/checklist_update.css' %}" />
 </head>
+
 <body>
-    <a href="{{request.META.HTTP_REFERER|escape}}">뒤로 가기</a><br>
-    
-        <form method="post" action="{% url 'checklist:update' todo.id %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">저장</button>
-    </form>
+    <div class="content">
+        <div class="title">
+            <a href=" {% url 'checklist:home' %}"><img src="{% static 'img/back-btn.png' %}" alt="뒤로가기" width="20.16"
+                    height="18.71" /></a>
+            <h3>체크리스트 수정</h3>
+        </div>
+        <form method="post" action="{% url 'checklist:update' todo.id %}" class="create_form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit_btn">완료</button>
+    </div>
 </body>
+
 </html>
