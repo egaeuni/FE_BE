@@ -93,6 +93,11 @@ nav .title {
   font-weight: bold;
 }
 
+
+.plan-detail {
+  height: 600px;
+}
+
 .plan-detail-time,
 .plan-detail-category {
   margin-left: 15px;
@@ -501,7 +506,6 @@ nav .title {
 }
 
 .plan-settingbtn {
-  position: fixed;
   bottom: 10px;
   width: 375px;
   display: flex;
