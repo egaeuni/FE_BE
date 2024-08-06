@@ -98,6 +98,7 @@ body {
 .text_content p {
   margin: 0;
   padding-left: 16px;
+  font-size: 14px;
 }
 
 .text_content::placeholder {
