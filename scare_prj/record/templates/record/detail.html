@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{% static 'img/logo_pur.png' %}" />
     <title>효담 - 기록 세부</title>
-    <link rel="stylesheet" href="{% static 'css/document_detail3.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/document_detail4.css' %}" />
   </head>
 
   <body>
     <div class="content">
       <div class="title">
         <img src="{% static 'img/Logo.png' %}" alt="효담 로고" width="35" height="35" />
-        <div>
-          <a href="{%url 'record:home'%}" class="back"> <img src="{% static 'img/back-btn.png' %}" width="20.16" height="18.71" /></a>
+        <div class="h">
+          <a href="{%url 'record:home'%}" class="back"> <img src="{% static 'img/back-btn.png' %}" width="23" height="23" /></a>
           <h3>기록</h3>
         </div>
       </div>
@@ -24,7 +24,9 @@
         <div class="text_content">
           <p>{{record.content}}</p>
           {%if record.image %}
-          <img src="{{record.image.url}}" width="343" />
+          <div>
+            <img src="{{record.image.url}}" class="content_img" />
+          </div>
           {%endif%}
           <div class="date">{{record.created_at|date:"Y.m.d"}}</div>
           <br />
