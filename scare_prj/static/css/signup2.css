@@ -106,8 +106,8 @@ a {
   }
 }
 
-#pw2 {
-  margin-bottom: 5ㅔㅌ;
+#id_password2 {
+  margin-bottom: 5px;
 }
 
 #pwError {
@@ -127,4 +127,9 @@ a {
   width: 12px;
   height: 12px;
   margin: 0 5px 0 0;
+}
+
+.pwtext {
+  font-size: 14px;
+  margin: 5px;
 }
