@@ -66,10 +66,11 @@ header img {
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 5px;
+  margin-left: 5px;
 }
 
 .nameLine input {
-  width: 290px;
+  width: 310px;
   height: 40px;
   border: 1px solid black;
   border-radius: 5px;

@@ -54,11 +54,12 @@ body {
   width: 100%;
   height: 630px;
 
-  margin-top: 20px;
+  margin-top: 40px;
   display: flex;
-  justify-content: space-evenly;
+  gap: 10px;
   flex-wrap: wrap;
   overflow-y: scroll;
+  padding: 0 30px;
 }
 
 .post_wrap::-webkit-scrollbar {
@@ -95,7 +96,7 @@ body {
   background-color: rgb(201, 153, 249, 0.5);
   font-weight: bold;
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
   padding: 0;
   padding-top: 6px;
 }
@@ -111,7 +112,7 @@ body {
   margin: 0;
   margin-top: 7px;
   width: 132px;
-  font-size: 10px;
+  font-size: 13px;
   margin-bottom: 12px;
 }
 

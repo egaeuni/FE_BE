@@ -92,12 +92,13 @@ body {
   vertical-align: top;
   resize: none;
   overflow: hidden;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .text_content p {
   margin: 0;
   padding-left: 16px;
+  font-size: 14px;
 }
 
 .text_content::placeholder {
@@ -118,7 +119,7 @@ body {
 .btn_div {
   display: flex;
   position: absolute;
-  right: 33px;
+  right: 20px;
   bottom: 0px;
 }
 
