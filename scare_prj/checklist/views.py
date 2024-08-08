@@ -5,7 +5,6 @@ from .forms import *
 from django.utils import timezone
 from django.http import JsonResponse
 import json
-import datetime
 from accounts.models import *
 from datetime import timedelta, datetime
 
@@ -73,7 +72,7 @@ def create(request):
                     start_date = timezone.now().date()
 
                 # 반복 주기를 2주로 설정
-                end_date = start_date + datetime.timedelta(weeks=2)
+                end_date = start_date + timedelta(weeks=2)
 
                 current_date = start_date
                 while current_date <= end_date:
@@ -99,7 +98,7 @@ def create(request):
                                 # 처음 설정한 repeat_on 값을 복사
                                 new_todo.repeat_on.set(repeat_days)  # 원래의 repeat_on 필드를 복사
                     
-                    current_date += datetime.timedelta(days=1)
+                    current_date += timedelta(days=1)
 
 
             return redirect('checklist:home')
@@ -200,7 +199,7 @@ def notification_list(request):
 # 읽음 처리
 @login_required
 def mark_as_read(request, notification_id):
-    notification = get_object_or_404(Notification, id=notification_id, user=request.user)
+    notifications = get_object_or_404(Notification, id=notification_id, user=request.user)
     notifications.is_read = True
-    notification.save()
+    notifications.save()
     return redirect('checklist:notification')
